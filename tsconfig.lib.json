@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "paths": {
+      "#src/*": ["./src/*"],
+      "@admiral-ds/admiral3-tokens": ["./src/index"],
+      "@admiral-ds/admiral3-tokens/css": ["./playground/css-imports.d.ts"],
+      "@admiral-ds/admiral3-tokens/fonts": ["./src/fonts/index"]
+    },
+    "plugins": [
+      {
+        "name": "@styled/typescript-styled-plugin",
+        "lint": {
+          "validProperties": ["container-type"],
+          "unknownAtRules": "ignore"
+        }
+      }
+    ]
+  },
+  "include": ["src/index.ts", "src/styled-components.ts", "src/fonts/**/*", "src/vite-env.d.ts"],
+  "exclude": ["src/**/*.stories.*", "src/**/*.test.*", "src/**/*.spec.*", "src/stories/**", "src/assets/**"]
+}
