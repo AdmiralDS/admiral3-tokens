@@ -6,7 +6,7 @@ export const primary = {
   primary50: '#A7C7FF',
   primary60: '#8BB5FF',
   primary70: '#689FFF',
-  primary80: '#5290FC',
+  primary80: '#5290FF',
   primary90: '#3984FF',
   primary100: '#1C73FF',
   primary110: '#0062FF',

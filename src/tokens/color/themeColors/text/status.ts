@@ -39,7 +39,7 @@ export const statusText = {
     },
     dark: {
       text1: {
-        rest: 'warning.warning80',
+        rest: 'warning.warning60',
       },
     },
   },

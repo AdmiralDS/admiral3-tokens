@@ -59,6 +59,7 @@
     "storybook": "storybook dev -p 6006",
     "playground": "npm run build:css && vite --config vite.playground.config.ts",
     "release": "standard-version",
+    "sync:tokens": "tsx scripts/sync-tokens.ts",
     "build": "vite build && npm run build:css && tsc -p tsconfig.lib.json && tsx scripts/build-dts.ts",
     "build:css": "tsx scripts/build-css.ts",
     "storybook:build": "storybook build",

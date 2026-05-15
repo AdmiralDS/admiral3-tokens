@@ -155,8 +155,8 @@ export const neutralBase = {
     },
     scrollbar: {
       rest: 'opacityWhite.16',
-      hover: 'opacityBlack.20',
-      press: 'opacityBlack.24',
+      hover: 'opacityWhite.20',
+      press: 'opacityWhite.24',
     },
   },
 } as const;
