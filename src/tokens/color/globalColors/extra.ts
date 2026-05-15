@@ -40,7 +40,7 @@ export const teal = {
 
 export const magenta = {
   magenta10: '#FBECF6',
-  magenta20: '#FBDEF1',
+  magenta20: '#FBDFF1',
   magenta30: '#F6D3EA',
   magenta40: '#F4C9E3',
   magenta50: '#EFB5D8',
@@ -59,7 +59,7 @@ export const magenta = {
 } as const;
 
 export const purple = {
-  purple10: '#F2EBFF',
+  purple10: '#F3EDFF',
   purple20: '#ECE0FF',
   purple30: '#E5D6FF',
   purple40: '#E0CDFE',
@@ -71,7 +71,7 @@ export const purple = {
   purple100: '#9654FA',
   purple110: '#893EF9',
   purple120: '#7034C8',
-  purple130: '#642DD5',
+  purple130: '#642DB5',
   purple140: '#53239A',
   purple150: '#401D76',
   purple160: '#36116D',
