@@ -19,6 +19,8 @@
       "import": "./dist/styled-components.js"
     },
     "./css": "./dist/css/index.css",
+    "./css/animation": "./dist/css/animation.css",
+    "./css/breakpoints": "./dist/css/breakpoints.css",
     "./css/global-colors": "./dist/css/global-colors.css",
     "./css/themes": "./dist/css/themes.css",
     "./css/typography": "./dist/css/typography.css",
@@ -27,7 +29,8 @@
     "./css/theme-light-neutral": "./dist/css/theme-light-neutral.css",
     "./css/theme-dark-neutral": "./dist/css/theme-dark-neutral.css",
     "./css/radius": "./dist/css/radius.css",
-    "./css/shadow": "./dist/css/shadow.css"
+    "./css/shadow": "./dist/css/shadow.css",
+    "./css/z-index": "./dist/css/z-index.css"
   },
   "keywords": [
     "AdmiralDS",

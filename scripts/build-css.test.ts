@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   buildCssFiles,
+  buildAnimationVariables,
   buildFlatVariables,
   buildShadowVariables,
   buildTypographyVariables,
@@ -64,6 +65,8 @@ describe('build-css helpers', () => {
 describe('build-css output', () => {
   it('generates all public CSS files', () => {
     expect(Object.keys(buildCssFiles()).sort()).toEqual([
+      'animation.css',
+      'breakpoints.css',
       'global-colors.css',
       'index.css',
       'radius.css',
@@ -74,7 +77,24 @@ describe('build-css output', () => {
       'theme-light.css',
       'themes.css',
       'typography.css',
+      'z-index.css',
     ]);
+  });
+
+  it('emits animation, breakpoints and z-index variables', () => {
+    const files = buildCssFiles();
+    const animationVariables = buildAnimationVariables();
+
+    expect(animationVariables).toContainEqual(['--admiral-animation-motion-duration-short-1', '50ms']);
+    expect(animationVariables).toContainEqual([
+      '--admiral-animation-motion-easing-decelerate-standard',
+      'cubic-bezier(0, 0, 0.2, 1)',
+    ]);
+    expect(files['animation.css']).toContain('--admiral-animation-motion-duration-long-4: 600ms;');
+    expect(files['breakpoints.css']).toContain('--admiral-breakpoints-lg: 1024px;');
+    expect(files['z-index.css']).toContain('--admiral-z-index-modal: 1400;');
+    expect(files['index.css']).toContain('--admiral-animation-motion-easing-linear: cubic-bezier(0, 0, 1, 1);');
+    expect(files['index.css']).toContain('--admiral-z-index-tooltip: 1600;');
   });
 
   it('emits typography variables for primitives and text styles', () => {
