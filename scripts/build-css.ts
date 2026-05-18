@@ -13,7 +13,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
  * Output contract:
  * - every public variable starts with `--admiral`;
  * - generated files always include `header`;
- * - `index.css` contains global colors, all themes, radius and typography;
+ * - `index.css` contains global colors, all themes, radius, typography and static utility tokens;
  * - `themes.css` contains all theme color variables and shadow geometry;
  * - standalone `shadow.css` includes light-theme fallbacks for shadow colors;
  * - per-theme files scope one selected theme to `:root`.
@@ -22,7 +22,18 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
  * It keeps CSS generation internal and avoids publishing source token maps as a
  * package subpath.
  */
-import { globalColors, radius, shadow, textStyles, themeModes, themes, typographyPrimitives } from '../src/css-data';
+import {
+  animation,
+  breakpoints,
+  globalColors,
+  radius,
+  shadow,
+  textStyles,
+  themeModes,
+  themes,
+  typographyPrimitives,
+  zIndex,
+} from '../src/css-data';
 import { resolveGlobalColorValue, type TokenValue } from '../src/tokens/color/resolveGlobalColorReference';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -49,9 +60,12 @@ type CssFiles = Record<string, string>;
 type ThemeVariablesByMode = Record<ThemeMode, VariableEntry[]>;
 type GeneratedCssParts = {
   readonly globalColorsCss: string;
+  readonly animationCss: string;
+  readonly breakpointsCss: string;
   readonly radiusCss: string;
   readonly typographyCss: string;
   readonly shadowCss: string;
+  readonly zIndexCss: string;
   readonly themesCss: string;
   readonly themeFiles: CssFiles;
 };
@@ -219,6 +233,24 @@ export const buildTypographyVariables = (): VariableEntry[] => [
   ),
 ];
 
+type MotionEasingValue = readonly [number, number, number, number];
+
+const isMotionEasingValue = (value: unknown): value is MotionEasingValue =>
+  Array.isArray(value) && value.length === 4 && value.every((point) => typeof point === 'number');
+
+export const buildAnimationVariables = (): VariableEntry[] =>
+  flatten(animation as unknown as TokenRecord).map(([path, value]) => {
+    if (path.includes('duration') && typeof value === 'number') {
+      return [toVarName(['animation', ...path]), `${value}ms`];
+    }
+
+    if (path.includes('easing') && isMotionEasingValue(value)) {
+      return [toVarName(['animation', ...path]), `cubic-bezier(${value.join(', ')})`];
+    }
+
+    return [toVarName(['animation', ...path]), value];
+  });
+
 /**
  * Resolves the light-theme fallback for a shadow layer color token.
  */
@@ -310,16 +342,25 @@ const buildPerThemeCssFiles = (
  */
 const buildIndexCss = ({
   globalColorsCss,
+  animationCss,
+  breakpointsCss,
   themesCss,
   radiusCss,
   typographyCss,
-}: Pick<GeneratedCssParts, 'globalColorsCss' | 'themesCss' | 'radiusCss' | 'typographyCss'>) => {
+  zIndexCss,
+}: Pick<
+  GeneratedCssParts,
+  'globalColorsCss' | 'animationCss' | 'breakpointsCss' | 'themesCss' | 'radiusCss' | 'typographyCss' | 'zIndexCss'
+>) => {
   return cssFile(
     [
       globalColorsCss.replace(header, '').trim(),
+      animationCss.replace(header, '').trim(),
+      breakpointsCss.replace(header, '').trim(),
       themesCss.replace(header, '').trim(),
       radiusCss.replace(header, '').trim(),
       typographyCss.replace(header, '').trim(),
+      zIndexCss.replace(header, '').trim(),
     ].join('\n\n'),
   );
 };
@@ -337,17 +378,23 @@ const buildGeneratedCssParts = (): GeneratedCssParts => {
   const globalColorsCss = cssFile(
     renderBlock(':root', buildFlatVariables('color-global', globalColors as TokenRecord)),
   );
+  const animationCss = cssFile(renderBlock(':root', buildAnimationVariables()));
+  const breakpointsCss = cssFile(renderBlock(':root', buildFlatVariables('breakpoints', breakpoints as TokenRecord)));
   const radiusCss = cssFile(renderBlock(':root', buildFlatVariables('radius', radius as TokenRecord)));
   const typographyCss = cssFile(renderBlock(':root', buildTypographyVariables()));
   const shadowCss = cssFile(renderBlock(':root', buildShadowVariables({ includeFallback: true })));
+  const zIndexCss = cssFile(renderBlock(':root', buildFlatVariables('z-index', zIndex as TokenRecord)));
   const themesCss = buildThemesCss(themeVariablesByMode, themeShadowVariables);
   const themeFiles = buildPerThemeCssFiles(themeVariablesByMode, themeShadowVariables);
 
   return {
     globalColorsCss,
+    animationCss,
+    breakpointsCss,
     radiusCss,
     typographyCss,
     shadowCss,
+    zIndexCss,
     themesCss,
     themeFiles,
   };
@@ -361,15 +408,28 @@ const buildGeneratedCssParts = (): GeneratedCssParts => {
  */
 export const buildCssFiles = (): CssFiles => {
   const cssParts = buildGeneratedCssParts();
-  const { globalColorsCss, radiusCss, typographyCss, shadowCss, themesCss, themeFiles } = cssParts;
+  const {
+    globalColorsCss,
+    animationCss,
+    breakpointsCss,
+    radiusCss,
+    typographyCss,
+    shadowCss,
+    zIndexCss,
+    themesCss,
+    themeFiles,
+  } = cssParts;
   const indexCss = buildIndexCss(cssParts);
 
   return {
     'global-colors.css': globalColorsCss,
+    'animation.css': animationCss,
+    'breakpoints.css': breakpointsCss,
     'themes.css': themesCss,
     'radius.css': radiusCss,
     'typography.css': typographyCss,
     'shadow.css': shadowCss,
+    'z-index.css': zIndexCss,
     'index.css': indexCss,
     ...themeFiles,
   };

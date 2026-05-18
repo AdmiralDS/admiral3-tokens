@@ -15,6 +15,10 @@ const isRuntimeConsoleError = (message: string) => {
 
 const essentialScenarios = [
   {
+    id: 'animation',
+    visibleText: 'Токены анимации',
+  },
+  {
     id: 'global-colors/primary',
     visibleText: 'Primary-110',
   },
@@ -133,6 +137,16 @@ test.describe('Token playground integration checks', () => {
     }
 
     expect(errors).toEqual([]);
+  });
+
+  test('shows animation preview tracks with the expected movement area', async ({ page }) => {
+    await page.goto(getPlaygroundScenarioPath('animation'));
+
+    const previewTracks = page.locator('[data-animation-preview-track]');
+
+    await expect(previewTracks).toHaveCount(5);
+    await expect(previewTracks.first()).toHaveCSS('width', '360px');
+    await expect(previewTracks.first()).toHaveCSS('height', '100px');
   });
 
   test('mounts bundled font helpers in the playground runtime', async ({ page }) => {

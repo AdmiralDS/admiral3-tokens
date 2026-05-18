@@ -8,6 +8,8 @@ export {
   themeModes,
   themes,
 } from './tokens/themes';
+export { animation } from './tokens/animation';
+export { breakpoints } from './tokens/breakpoints';
 export {
   color,
   createGlobalColorCss,
@@ -20,6 +22,9 @@ export {
 export { cornerRadiusOptions, radius } from './tokens/radius';
 export { shadow, shadowColorKeys } from './tokens/shadow';
 export { textStyles, typography, typographyPrimitives, typographyTextStyles } from './tokens/typography';
+export { zIndex } from './tokens/zIndex';
+export type { Animation, MotionDuration, MotionEasing, MotionEasingValue } from './tokens/animation';
+export type { BreakpointName, Breakpoints } from './tokens/breakpoints';
 export type {
   GeneratedAdmiralPalette,
   GlobalColors,
@@ -54,3 +59,4 @@ export type {
   TypographyStyleName,
   TypographyTextStyleName,
 } from './tokens/typography';
+export type { ZIndex, ZIndexLayer } from './tokens/zIndex';

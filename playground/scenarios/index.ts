@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react';
 
+import { animationScenarios } from './animation';
 import { globalColorsScenarios } from './global-colors';
 import { radiusScenarios } from './radius';
 import { shadowScenarios } from './shadows';
@@ -17,6 +18,7 @@ export type PlaygroundScenario = {
 };
 
 export const playgroundScenarios = [
+  ...animationScenarios,
   ...globalColorsScenarios,
   ...themeColorsScenarios,
   ...radiusScenarios,
