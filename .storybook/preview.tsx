@@ -89,7 +89,16 @@ const preview: Preview = {
     layout: 'fullscreen',
     options: {
       storySort: {
-        order: ['Global Colors', 'Theme Colors', 'Typography', 'Radius', 'Shadows', 'Themes', 'Token Usage Examples'],
+        order: [
+          'Global Colors',
+          'Theme Colors',
+          'Typography',
+          'Radius',
+          'Shadows',
+          'Animation',
+          'Themes',
+          'Token Usage Examples',
+        ],
       },
     },
     docs: {
