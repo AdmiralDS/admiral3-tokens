@@ -63,6 +63,8 @@ src/tokens/stories/TokenUsageExamples.template.tsx
 
 ## Установка браузеров для Playwright
 
+В проекте используется Playwright `1.60.0` или выше, чтобы установка браузеров не попадала в известную регрессию старых версий.
+
 ```shell
 npx playwright install --with-deps
 ```
