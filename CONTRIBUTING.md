@@ -2,6 +2,104 @@
 
 В этом документе зафиксированы обязательные правила внесения изменений в репозиторий.
 
+## Содержание
+
+- [Быстрый старт](#быстрый-старт)
+- [Обновление токенов из Pixso](#обновление-токенов-из-pixso)
+- [Коммиты](#коммиты)
+- [Подготовка изменений перед PR](#подготовка-изменений-перед-pr)
+- [Release и publish](#release-и-publish)
+- [Accessibility](#accessibility)
+- [Новые токены](#новые-токены)
+- [Минимальное ожидание от каждого PR](#минимальное-ожидание-от-каждого-pr)
+
+## Быстрый старт
+
+Локально используйте Node.js 24, как в CI, и устанавливайте зависимости через `npm ci`.
+
+```shell
+npm ci
+npm run check:full
+```
+
+Для разработки доступны основные команды:
+
+```shell
+npm run storybook
+npm run playground
+```
+
+Перед PR обычно достаточно:
+
+```shell
+npm run check:fix
+npm run check:full
+```
+
+`npm run check:full` уже проверяет сборку пакета и CSS output через `npm run test:e2e`, потому что e2e перед запуском
+выполняет `npm run build`. Если нужно проверить состав npm tarball перед публикацией, дополнительно запустите:
+
+```shell
+npm run pack:check
+```
+
+Если меняются Storybook scenarios или визуальные демонстрации токенов, проверьте сборку Storybook:
+
+```shell
+npm run storybook:build
+```
+
+## Обновление токенов из Pixso
+
+Этот поток используется, когда значения токенов пришли из нового Pixso export.
+
+### Шаги
+
+1. Выгрузить local variables из Pixso в JSON.
+2. Заменить файл `src/tokens/source/local-variables.json` новым export.
+3. Запустить prettier в режиме fix, чтобы привести выгруженный json к правильному форматированию.
+
+```shell
+npm run check:fix
+```
+
+4. Запустить синхронизацию TypeScript token maps:
+
+```shell
+npm run sync:tokens
+```
+
+5. Посмотреть `git diff` и убедиться, что скрипт изменил только ожидаемые token source files.
+6. Запустить точечную проверку синхронизации с Pixso export:
+
+```shell
+npm run test:run -- src/tokens/source/localVariables.test.ts
+```
+
+7. Если изменились CSS tokens, theme objects, публичные exports, stories или playground-сценарии, обновить связанные
+   файлы вручную. `npm run sync:tokens` этого не делает.
+8. Запустить обязательные проверки:
+
+```shell
+npm run check:fix
+npm run check:full
+```
+
+9. Если нужно проверить состав npm tarball перед публикацией, дополнительно запустить:
+
+```shell
+npm run pack:check
+```
+
+### Что важно проверить
+
+1. `src/tokens/source/local-variables.json` содержит именно актуальный Pixso export, а не локально отредактированный JSON.
+2. `npm run sync:tokens` не заменяет решения по публичному контракту: новые exports, CSS subpaths, Storybook и playground
+   добавляются вручную.
+3. Если sync-тест показывает расхождения, сначала синхронизируйте token maps и только потом обновляйте зависимые tests,
+   stories, playground и документацию.
+4. Generated output из `dist` не редактируется вручную и не считается source of truth.
+
 ## Коммиты
 
 Для сообщений коммитов используется `Conventional Commits`:
@@ -284,7 +382,7 @@ browser/runtime integration.
 4. Если нужны разные форматы вывода, они должны генерироваться или собираться из одной структуры.
 5. Generated files и `dist` не редактируются вручную и не считаются source of truth.
 6. Имена токенов должны быть стабильными, семантическими и согласованными с соседними группами.
-7. При замене Pixso export нужно запускать `npm run sync:tokens`, затем `npm run test:run -- src/tokens/source/localVariables.test.ts`; если тест показывает расхождения, сначала синхронизировать token maps, затем остальные проверки.
+7. При замене Pixso export нужно идти по порядку из раздела [Обновление токенов из Pixso](#обновление-токенов-из-pixso).
 
 ### Правила для `npm run sync:tokens`
 
