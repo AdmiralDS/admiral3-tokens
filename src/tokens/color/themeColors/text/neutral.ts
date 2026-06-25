@@ -131,10 +131,10 @@ export const neutralText = {
       rest: 'opacityWhite.24',
     },
     staticWhite: {
-      '1': 'neutral.white',
-      '2': 'opacityWhite.56',
-      '3': 'opacityWhite.36',
-      disable: 'opacityWhite.24',
+      '1': 'opacityBlack.88',
+      '2': 'opacityBlack.56',
+      '3': 'opacityBlack.36',
+      disable: 'opacityBlack.20',
     },
     staticBlack: {
       '1': 'opacityBlack.88',
