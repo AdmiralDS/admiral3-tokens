@@ -1,9 +1,9 @@
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { neutralText } from '../text/neutral';
+import { neutral } from '../neutral';
 
 const neutralTextConfig = createThemeColorsSectionsConfig({
-  source: neutralText,
+  source: neutral,
   themeSection: 'text',
   tokenGroup: 'neutral',
 });

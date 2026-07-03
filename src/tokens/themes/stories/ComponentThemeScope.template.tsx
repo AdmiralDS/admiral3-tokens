@@ -30,8 +30,8 @@ const StyledPage = styled.article`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 
   @media (max-width: 720px) {
     padding: 20px;
@@ -51,14 +51,14 @@ const StyledHeader = styled.header`
 
 const StyledTitle = styled.h1`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H4']}
 `;
 
 const StyledText = styled.p`
   max-width: 960px;
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Body/Body 1 Long']}
 `;
 
@@ -66,14 +66,14 @@ const StyledDemo = styled.section`
   display: grid;
   gap: 16px;
   padding: 24px;
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['8'].large};
 `;
 
 const StyledDemoTitle = styled.h2`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H5']}
 `;
 
@@ -97,14 +97,14 @@ const StyledThemeModePanel = styled.div`
   gap: 16px;
   min-width: 0;
   padding: 20px;
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['6'].large};
 `;
 
 const StyledThemeModeTitle = styled.h3`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H6']}
 `;
 
@@ -113,9 +113,9 @@ const StyledCard = styled.article`
   gap: 14px;
   min-width: 0;
   padding: 20px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['6'].large};
   box-shadow: ${({ theme }) => theme.shadow.shadow04};
 `;
@@ -126,13 +126,13 @@ const StyledSideMenu = styled(StyledCard)`
 
 const StyledCardTitle = styled.h3`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H6']}
 `;
 
 const StyledCardText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${typography['Body/Body 2 Long']}
 `;
 
@@ -140,15 +140,15 @@ const StyledAction = styled.button`
   justify-self: start;
   min-height: 36px;
   padding: 0 14px;
-  color: ${({ theme }) => theme.color.text.neutral.inverted.rest};
-  background: ${({ theme }) => theme.color.base.primary.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.primary.stroke1.rest};
+  color: ${({ theme }) => theme.color.neutral.text.inverted.rest};
+  background: ${({ theme }) => theme.color.primary.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.primary.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   cursor: pointer;
   ${typography['Button/Button 2']}
 
   &:hover {
-    background: ${({ theme }) => theme.color.base.primary.base1.hover};
+    background: ${({ theme }) => theme.color.primary.base._1.hover};
   }
 `;
 
@@ -160,15 +160,15 @@ const StyledMenuList = styled.nav`
 const StyledMenuItem = styled.span`
   display: block;
   padding: 8px 10px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   ${typography['Body/Body 2 Long']}
 `;
 
 const StyledMenuItemActive = styled(StyledMenuItem)`
-  color: ${({ theme }) => theme.color.text.neutral.inverted.rest};
-  background: ${({ theme }) => theme.color.base.primary.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text.inverted.rest};
+  background: ${({ theme }) => theme.color.primary.base._1.rest};
 `;
 
 const ScopedThemeCard = ({

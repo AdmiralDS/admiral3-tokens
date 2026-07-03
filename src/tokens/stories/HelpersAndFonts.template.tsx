@@ -23,8 +23,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 
   @media (max-width: 720px) {
     padding: 20px;
@@ -38,14 +38,14 @@ const StyledHeader = styled.header`
 
 const StyledTitle = styled.h1`
   margin: 0 0 8px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${textStyles.header.h4}
 `;
 
 const StyledLead = styled.p`
   max-width: 760px;
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${textStyles.body.body1Long}
 `;
 
@@ -65,14 +65,14 @@ const StyledCard = styled.article`
   box-sizing: border-box;
   min-width: 0;
   padding: 24px;
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['8'].large};
 `;
 
 const StyledCardTitle = styled.h2`
   margin: 0 0 16px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${textStyles.header.h6}
 `;
 
@@ -82,8 +82,8 @@ const StyledCode = styled.code`
   padding: 12px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base3.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
+  background: ${({ theme }) => theme.color.neutral.base._3.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['2'].medium};
   ${textStyles.monospace.mono3}
 `;
@@ -102,7 +102,7 @@ const StyledSwatch = styled.div<{ $color: string }>`
   min-width: 0;
   aspect-ratio: 1;
   background: ${({ $color }) => $color};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 `;
 
@@ -114,23 +114,23 @@ const StyledDemo = styled.div`
 const StyledAction = styled.button`
   justify-self: start;
   padding: 10px 16px;
-  color: ${customTheme.color.text.neutral.staticWhite['1']};
-  background: ${customTheme.color.base.primary.base1.rest};
-  border: 1px solid ${customTheme.color.stroke.primary.stroke1.rest};
+  color: ${customTheme.color.neutral.text.staticWhite._1};
+  background: ${customTheme.color.primary.base._1.rest};
+  border: 1px solid ${customTheme.color.primary.stroke._1.rest};
   border-radius: ${customTheme.radius.byBase['4'].medium};
   ${textStyles.button.button1}
 `;
 
 const StyledVtbText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   font-family: 'VTB Group UI', sans-serif;
   ${textStyles.body.body1Long}
 `;
 
 const StyledMonoText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   font-family: 'Source Code Pro', monospace;
   ${textStyles.monospace.mono2}
 `;
@@ -184,8 +184,8 @@ variables['--admiral-color-global-primary-primary110'];
   },
 });
 
-theme.color.base.primary.base1.rest;
-// ${customTheme.color.base.primary.base1.rest}`}</StyledCode>
+theme.color.primary.base._1.rest;
+// ${customTheme.color.primary.base._1.rest}`}</StyledCode>
         </StyledDemo>
       </StyledCard>
 

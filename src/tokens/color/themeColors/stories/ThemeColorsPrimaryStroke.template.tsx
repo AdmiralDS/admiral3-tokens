@@ -1,9 +1,9 @@
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { primaryStroke } from '../stroke/primary';
+import { primary } from '../primary';
 
 const primaryStrokeConfig = createThemeColorsSectionsConfig({
-  source: primaryStroke,
+  source: primary,
   themeSection: 'stroke',
   tokenGroup: 'primary',
 });

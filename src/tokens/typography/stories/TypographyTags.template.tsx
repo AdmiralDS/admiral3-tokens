@@ -189,14 +189,14 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 28px 24px 72px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
-  background: var(--admiral-color-base-neutral-base1-rest, ${(p) => p.theme.color['Base/Neutral/Base 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
+  background: var(--admiral-color-neutral-base-1-rest, ${(p) => p.theme.color['Neutral/Base/1/Rest']});
 `;
 
 const StyledTitle = styled.h1`
   max-width: 1024px;
   margin: 0 auto 10px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${typography['Header/H4']}
 `;
 
@@ -243,12 +243,12 @@ const StyledHeaderPreview = styled.div<{ $styleName: TypographyTextStyleName }>`
   gap: 28px;
   align-items: baseline;
   min-width: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${({ $styleName }) => typography[$styleName]}
 `;
 
 const StyledHeaderSize = styled.span`
-  color: var(--admiral-color-text-neutral-text2-rest, ${(p) => p.theme.color['Text/Neutral/Text 2/Rest']});
+  color: var(--admiral-color-neutral-text-2-rest, ${(p) => p.theme.color['Neutral/Text/2/Rest']});
 `;
 
 const StyledCompactPreview = styled.div`
@@ -259,12 +259,12 @@ const StyledCompactPreview = styled.div`
 `;
 
 const StyledCompactName = styled.span<{ $styleName: TypographyTextStyleName }>`
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${({ $styleName }) => typography[$styleName]}
 `;
 
 const StyledCompactSize = styled.span<{ $styleName: TypographyTextStyleName }>`
-  color: var(--admiral-color-text-neutral-text2-rest, ${(p) => p.theme.color['Text/Neutral/Text 2/Rest']});
+  color: var(--admiral-color-neutral-text-2-rest, ${(p) => p.theme.color['Neutral/Text/2/Rest']});
   ${({ $styleName }) => typography[$styleName]}
 `;
 
@@ -292,8 +292,8 @@ const StyledTag = styled.span`
   align-items: center;
   min-height: 22px;
   padding: 2px 9px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
-  background: var(--admiral-color-base-neutral-base2-rest, ${(p) => p.theme.color['Base/Neutral/Base 2/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
+  background: var(--admiral-color-neutral-base-2-rest, ${(p) => p.theme.color['Neutral/Base/2/Rest']});
   border-radius: var(--admiral-radius-by-base-4-medium, ${(p) => p.theme.radius['By Base/4/Medium']});
   ${typography['Caption/Caption 1']}
 `;
@@ -328,7 +328,7 @@ const StyledTable = styled.table`
 `;
 
 const StyledTableHead = styled.thead`
-  background: var(--admiral-color-base-neutral-base2-rest, ${(p) => p.theme.color['Base/Neutral/Base 2/Rest']});
+  background: var(--admiral-color-neutral-base-2-rest, ${(p) => p.theme.color['Neutral/Base/2/Rest']});
 `;
 
 const StyledCell = styled.th`
@@ -336,18 +336,18 @@ const StyledCell = styled.th`
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${(p) => p.theme.color['Stroke/Neutral/Subtle/Rest']});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${(p) => p.theme.color['Neutral/Stroke/Subtle/Rest']});
 `;
 
 const StyledBodyCell = styled.td`
   padding: 12px 16px;
   border-bottom: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${(p) => p.theme.color['Stroke/Neutral/Subtle/Rest']});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${(p) => p.theme.color['Neutral/Stroke/Subtle/Rest']});
 `;
 
 const StyledTableRow = styled.tr`
   &:nth-child(even) {
-    background: var(--admiral-color-base-neutral-base2-rest, ${(p) => p.theme.color['Base/Neutral/Base 2/Rest']});
+    background: var(--admiral-color-neutral-base-2-rest, ${(p) => p.theme.color['Neutral/Base/2/Rest']});
   }
 `;
 
@@ -367,12 +367,12 @@ const StyledMonospacePreview = styled.div<{ $styleName: TypographyTextStyleName 
   gap: 24px;
   align-items: baseline;
   min-width: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${({ $styleName }) => typography[$styleName]}
 `;
 
 const StyledMonospaceSize = styled.span`
-  color: var(--admiral-color-text-neutral-text2-rest, ${(p) => p.theme.color['Text/Neutral/Text 2/Rest']});
+  color: var(--admiral-color-neutral-text-2-rest, ${(p) => p.theme.color['Neutral/Text/2/Rest']});
 `;
 
 const renderTags = (tags: string[]) => (

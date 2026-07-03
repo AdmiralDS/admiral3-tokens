@@ -36,8 +36,8 @@ const StyledPage = styled.article`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 
   @media (max-width: 720px) {
     padding: 20px;
@@ -53,7 +53,7 @@ const StyledContent = styled.div`
 const StyledLead = styled.p`
   max-width: 1080px;
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H4']}
 `;
 
@@ -72,22 +72,22 @@ const StyledThemeCard = styled.section`
   min-width: 0;
   min-height: 232px;
   padding: 24px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['8'].large};
   box-shadow: ${({ theme }) => theme.shadow.shadow08};
 `;
 
 const StyledThemeTitle = styled.h2`
   margin: 0 0 24px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Header/H5']}
 `;
 
 const StyledThemeDescription = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Body/Body 1 Long']}
 `;
 
@@ -108,15 +108,15 @@ const StyledPill = styled.span`
   min-height: 32px;
   align-items: center;
   padding: 0 12px;
-  color: ${({ theme }) => theme.color.text.neutral.inverted.rest};
-  background: ${({ theme }) => theme.color.base.primary.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text.inverted.rest};
+  background: ${({ theme }) => theme.color.primary.base._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   ${typography['Button/Button 2']}
 `;
 
 const StyledSecondaryPill = styled(StyledPill)`
-  color: ${({ theme }) => theme.color.text.primary.text1.rest};
-  background: ${({ theme }) => theme.color.base.primary.base3.rest};
+  color: ${({ theme }) => theme.color.primary.text._1.rest};
+  background: ${({ theme }) => theme.color.primary.base._3.rest};
 `;
 
 const ThemeOverviewCard = ({ item }: { readonly item: ThemeOverviewItem }) => (

@@ -1,9 +1,9 @@
+import { themeColors } from '..';
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { extraStroke } from '../stroke/extra';
 
 const extraStrokeConfig = createThemeColorsSectionsConfig({
-  source: extraStroke,
+  source: themeColors,
   sourceMode: 'lightDark',
   themeSection: 'stroke',
   tokenGroup: 'extra',

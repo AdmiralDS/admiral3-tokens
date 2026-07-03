@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { globalColors, themeColors } from '../color';
+import { globalColors, themeColors, themeShadowColors } from '../color';
 import { radius } from '../radius';
 import { themeModes, type ThemeMode } from '../themes';
 import { typographyPrimitives } from '../typography';
@@ -101,6 +101,7 @@ const sourceReferenceToTokenReference = (value: string) => {
 
 const tokenSegmentToSourceSegment = (segment: string) =>
   segment
+    .replace(/^_(\d+)$/, '$1')
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/([A-Za-z])(\d+)/g, '$1/$2')
     .replace(/^./, (letter) => letter.toUpperCase());
@@ -173,61 +174,75 @@ const getBinaryThemeMode = (mode: ThemeMode) => (mode.startsWith('dark') ? 'dark
 const getNeutralMode = (mode: ThemeMode) =>
   mode === 'lightNeutral' || mode === 'darkNeutral' ? mode : getBinaryThemeMode(mode);
 
+const selectThemeTokenMode = (value: unknown, mode: ThemeMode): unknown => {
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) {
+    return value;
+  }
+
+  if (mode in value && typeof (value as Record<string, unknown>)[mode] === 'string') {
+    return (value as Record<string, unknown>)[mode];
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).map(([key, nestedValue]) => [key, selectThemeTokenMode(nestedValue, mode)]),
+  );
+};
+
 const buildThemeColorTokens = (mode: ThemeMode) => {
   const tokens: TokenRecord = {};
   const binaryMode = getBinaryThemeMode(mode);
   const primaryMode = getNeutralMode(mode);
 
-  flattenTokenReferences(themeColors.base.neutral[binaryMode])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.neutral.base, binaryMode))
     .map(withoutLeadingSegment('Base'))
     .forEach(([path, value]) => {
       tokens[`--Neutral/Base/${path}`] = value;
     });
 
-  flattenTokenReferences(themeColors.text.neutral[getNeutralMode(mode)])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.neutral.text, getNeutralMode(mode)))
     .map(withoutLeadingSegment('Text'))
     .forEach(([path, value]) => {
       tokens[`--Neutral/Text/${path}`] = value;
     });
 
-  flattenTokenReferences(themeColors.stroke.neutral[getNeutralMode(mode)])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.neutral.stroke, getNeutralMode(mode)))
     .map(withoutLeadingSegment('Stroke'))
     .forEach(([path, value]) => {
       tokens[`--Neutral/Stroke/${path}`] = value;
     });
 
-  flattenTokenReferences(themeColors.base.primary[primaryMode])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.primary.base, primaryMode))
     .map(withoutLeadingSegment('Base'))
     .forEach(([path, value]) => {
       tokens[`--Primary/Base/${path}`] = value;
     });
 
-  flattenTokenReferences(themeColors.text.primary[primaryMode])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.primary.text, primaryMode))
     .map(withoutLeadingSegment('Text'))
     .forEach(([path, value]) => {
       tokens[`--Primary/Text/${path}`] = value;
     });
 
-  flattenTokenReferences(themeColors.stroke.primary[primaryMode])
+  flattenTokenReferences(selectThemeTokenMode(themeColors.primary.stroke, primaryMode))
     .map(withoutLeadingSegment('Stroke'))
     .forEach(([path, value]) => {
       tokens[`--Primary/Stroke/${path}`] = value;
     });
 
   (['error', 'success', 'warning', 'attention'] as const).forEach((group) => {
-    flattenTokenReferences(themeColors.base.status[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].base, binaryMode))
       .map(withoutLeadingSegment('Base'))
       .forEach(([path, value]) => {
         tokens[`--${capitalize(group)}/Base/${path}`] = value;
       });
 
-    flattenTokenReferences(themeColors.text.status[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].text, binaryMode))
       .map(withoutLeadingSegment('Text'))
       .forEach(([path, value]) => {
         tokens[`--${capitalize(group)}/Text/${path}`] = value;
       });
 
-    flattenTokenReferences(themeColors.stroke.status[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].stroke, binaryMode))
       .map(withoutLeadingSegment('Stroke'))
       .forEach(([path, value]) => {
         tokens[`--${capitalize(group)}/Stroke/${path}`] = value;
@@ -235,29 +250,29 @@ const buildThemeColorTokens = (mode: ThemeMode) => {
   });
 
   (['blue', 'purple', 'magenta', 'teal'] as const).forEach((group) => {
-    flattenTokenReferences(themeColors.base.extra[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].base, binaryMode))
       .map(withoutLeadingSegment('Base'))
       .forEach(([path, value]) => {
         tokens[`--Extra/${capitalize(group)}/Base/${path}`] = value;
       });
 
-    flattenTokenReferences(themeColors.text.extra[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].text, binaryMode))
       .map(withoutLeadingSegment('Text'))
       .forEach(([path, value]) => {
         tokens[`--Extra/${capitalize(group)}/Text/${path}`] = value;
       });
 
-    flattenTokenReferences(themeColors.stroke.extra[group][binaryMode])
+    flattenTokenReferences(selectThemeTokenMode(themeColors[group].stroke, binaryMode))
       .map(withoutLeadingSegment('Stroke'))
       .forEach(([path, value]) => {
         tokens[`--Extra/${capitalize(group)}/Stroke/${path}`] = value;
       });
   });
 
-  tokens['--Shadows/Оutline M'] = themeColors.shadow.outlineM[mode];
-  tokens['--Shadows/Оutline L'] = themeColors.shadow.outlineL[mode];
-  tokens['--Shadows/Main M'] = themeColors.shadow.mainM[mode];
-  tokens['--Shadows/Main L'] = themeColors.shadow.mainL[mode];
+  tokens['--Shadows/Оutline M'] = themeShadowColors.outlineM[mode];
+  tokens['--Shadows/Оutline L'] = themeShadowColors.outlineL[mode];
+  tokens['--Shadows/Main M'] = themeShadowColors.mainM[mode];
+  tokens['--Shadows/Main L'] = themeShadowColors.mainL[mode];
 
   return tokens;
 };

@@ -1,9 +1,9 @@
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { neutralStroke } from '../stroke/neutral';
+import { neutral } from '../neutral';
 
 const neutralStrokeConfig = createThemeColorsSectionsConfig({
-  source: neutralStroke,
+  source: neutral,
   themeSection: 'stroke',
   tokenGroup: 'neutral',
 });

@@ -5,8 +5,8 @@
 body {
   margin: 0;
   min-height: 100dvh;
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
   font-family: var(--admiral-typography-primitives-font-family-primary);
 }
 
@@ -20,8 +20,8 @@ body {
   min-height: 100dvh;
   padding: 12px;
   align-items: start;
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
 }
 
 .playground-header {
@@ -32,7 +32,7 @@ body {
   width: 100%;
   padding-bottom: 8px;
   height: fit-content;
-  border-bottom: 1px solid var(--admiral-color-stroke-neutral-subtle-rest);
+  border-bottom: 1px solid var(--admiral-color-neutral-stroke-subtle-rest);
 }
 
 .playground-page-title {
@@ -52,7 +52,7 @@ body {
 }
 
 .playground-theme-label {
-  color: var(--admiral-color-text-neutral-text2-rest);
+  color: var(--admiral-color-neutral-text-2-rest);
   font-family: var(--admiral-typography-text-styles-body-body2-long-font-family);
   font-size: var(--admiral-typography-text-styles-body-body2-long-font-size);
   font-weight: var(--admiral-typography-text-styles-body-body2-long-font-weight);
@@ -62,9 +62,9 @@ body {
 .playground-theme-select {
   min-height: 32px;
   padding: 0 8px;
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base1-rest);
-  border: 1px solid var(--admiral-color-stroke-neutral-stroke1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-4-medium);
   font-family: var(--admiral-typography-text-styles-body-body2-long-font-family);
   font-size: var(--admiral-typography-text-styles-body-body2-long-font-size);
@@ -88,7 +88,7 @@ body {
   align-self: start;
   height: 100%;
   padding: 4px;
-  border-right: 1px solid var(--admiral-color-stroke-neutral-subtle-rest);
+  border-right: 1px solid var(--admiral-color-neutral-stroke-subtle-rest);
 }
 
 .playground-content {
@@ -102,18 +102,18 @@ body {
 .playground-toggle {
   padding: 0;
   border: 0;
-  color: var(--admiral-color-text-neutral-text1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
   font-family: var(--admiral-typography-text-styles-body-body2-long-font-family);
   font-size: var(--admiral-typography-text-styles-body-body2-long-font-size);
   font-weight: var(--admiral-typography-text-styles-body-body2-long-font-weight);
   line-height: var(--admiral-typography-text-styles-body-body2-long-line-height);
   text-decoration: underline;
-  background: var(--admiral-color-base-neutral-base1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
   cursor: pointer;
 }
 
 .playground-toggle:hover {
-  color: var(--admiral-color-text-primary-text1-hover);
+  color: var(--admiral-color-primary-text-1-hover);
 }
 
 .playground-nav {
@@ -125,7 +125,7 @@ body {
   display: block;
   overflow: hidden;
   padding: 2px 0;
-  color: var(--admiral-color-text-neutral-text1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
   text-overflow: ellipsis;
   text-decoration: none;
   white-space: nowrap;
@@ -138,7 +138,7 @@ body {
 
 .playground-nav-link:hover,
 .playground-nav-link_active {
-  color: var(--admiral-color-text-primary-text1-rest);
+  color: var(--admiral-color-primary-text-1-rest);
 }
 
 .playground-preview {
@@ -152,9 +152,9 @@ body {
 .token-demo {
   width: min(760px, 100%);
   padding: 16px;
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base2-rest);
-  border: 1px solid var(--admiral-color-stroke-neutral-stroke1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-2-rest);
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-8-large);
 }
 
@@ -168,9 +168,9 @@ body {
 .token-demo__tab {
   min-height: 32px;
   padding: 0 12px;
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base1-rest);
-  border: 1px solid var(--admiral-color-stroke-neutral-stroke1-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-4-medium);
   cursor: pointer;
   font-family: var(--admiral-typography-text-styles-button-button2-font-family);
@@ -180,8 +180,8 @@ body {
 }
 
 .token-demo__tab[data-active='true'] {
-  color: var(--admiral-color-text-neutral-static-white-1);
-  background: var(--admiral-color-base-primary-base1-rest);
+  color: var(--admiral-color-neutral-text-static-white-1);
+  background: var(--admiral-color-primary-base-1-rest);
 }
 
 .token-demo__surface {
@@ -193,8 +193,8 @@ body {
 
 .token-demo__card {
   padding: 20px;
-  background: var(--admiral-color-base-neutral-base1-rest);
-  border: 1px solid var(--admiral-color-stroke-neutral-stroke1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-6-large);
   box-shadow: var(--admiral-shadow-shadow08);
 }
@@ -202,7 +202,7 @@ body {
 .token-demo__eyebrow {
   display: block;
   margin-bottom: 8px;
-  color: var(--admiral-color-text-primary-text1-rest);
+  color: var(--admiral-color-primary-text-1-rest);
   font-family: var(--admiral-typography-text-styles-caption-caption1-font-family);
   font-size: var(--admiral-typography-text-styles-caption-caption1-font-size);
   font-weight: var(--admiral-typography-text-styles-caption-caption1-font-weight);
@@ -220,7 +220,7 @@ body {
 .token-demo__text {
   max-width: 520px;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text2-rest);
+  color: var(--admiral-color-neutral-text-2-rest);
   font-family: var(--admiral-typography-text-styles-body-body2-long-font-family);
   font-size: var(--admiral-typography-text-styles-body-body2-long-font-size);
   font-weight: var(--admiral-typography-text-styles-body-body2-long-font-weight);
@@ -237,9 +237,9 @@ body {
 .token-demo__button {
   min-height: 36px;
   padding: 0 14px;
-  color: var(--admiral-color-text-neutral-static-white-1);
-  background: var(--admiral-color-base-primary-base1-rest);
-  border: 1px solid var(--admiral-color-stroke-primary-stroke1-rest);
+  color: var(--admiral-color-neutral-text-static-white-1);
+  background: var(--admiral-color-primary-base-1-rest);
+  border: 1px solid var(--admiral-color-primary-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-4-medium);
   font-family: var(--admiral-typography-text-styles-button-button2-font-family);
   font-size: var(--admiral-typography-text-styles-button-button2-font-size);
@@ -248,9 +248,9 @@ body {
 }
 
 .token-demo__button_secondary {
-  color: var(--admiral-color-text-neutral-text1-rest);
-  background: var(--admiral-color-base-neutral-base1-rest);
-  border-color: var(--admiral-color-stroke-neutral-stroke2-rest);
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
+  border-color: var(--admiral-color-neutral-stroke-2-rest);
 }
 
 .token-demo__swatches {
@@ -262,24 +262,24 @@ body {
 .token-demo__swatch {
   width: 32px;
   aspect-ratio: 1;
-  border: 1px solid var(--admiral-color-stroke-neutral-stroke1-rest);
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest);
   border-radius: var(--admiral-radius-by-base-4-medium);
 }
 
 .token-demo__swatch_primary {
-  background: var(--admiral-color-base-primary-base1-rest);
+  background: var(--admiral-color-primary-base-1-rest);
 }
 
 .token-demo__swatch_success {
-  background: var(--admiral-color-base-status-success-base1-rest);
+  background: var(--admiral-color-success-base-1-rest);
 }
 
 .token-demo__swatch_warning {
-  background: var(--admiral-color-base-status-warning-base1-rest);
+  background: var(--admiral-color-warning-base-1-rest);
 }
 
 .token-demo__swatch_error {
-  background: var(--admiral-color-base-status-error-base1-rest);
+  background: var(--admiral-color-error-base-1-rest);
 }
 
 @media (max-width: 900px) {
@@ -291,7 +291,7 @@ body {
     padding-right: 0;
     padding-bottom: 20px;
     border-right: 0;
-    border-bottom: 1px solid var(--admiral-color-stroke-neutral-subtle-rest);
+    border-bottom: 1px solid var(--admiral-color-neutral-stroke-subtle-rest);
   }
 
   .playground-content {

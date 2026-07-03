@@ -240,7 +240,7 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 
 ### Theme colors
 
-- `src/tokens/color/themeColors/index.ts` - агрегатор semantic theme colors: base, text, stroke, shadow.
+- `src/tokens/color/themeColors/index.ts` - агрегатор semantic theme colors в публичной структуре palette -> base/text/stroke с mode в leaf-узлах токенов; section-first compatibility-агрегаты не публикуются.
 - `src/tokens/color/themeColors/stories/ThemeColors.stories.tsx` - Storybook CSF файл для сценариев Theme Colors.
 - `src/tokens/color/themeColors/stories/ThemeColors.template.tsx` - пример/template общей информации по Theme Colors; подробно не разбирается.
 - `src/tokens/color/themeColors/stories/ThemeColorsSections.template.tsx` - общий source-driven renderer для Theme Colors разделов Neutral / Primary / Status / Extra; строит группы и states из token source.
@@ -258,34 +258,24 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 - `src/tokens/color/themeColors/stories/ThemeColorsExtraText.template.tsx` - пример/template раздела Extra / Text с актуальными значениями выбранной темы; подробно не разбирается.
 - `src/tokens/color/themeColors/stories/ThemeColorsExtraStroke.template.tsx` - пример/template раздела Extra / Stroke с актуальными значениями выбранной темы; подробно не разбирается.
 
-#### Base semantic colors
+#### Theme color palettes
 
-- `src/tokens/color/themeColors/base/extra.ts` - base/extra semantic color references по theme modes.
-- `src/tokens/color/themeColors/base/index.ts` - агрегатор base semantic color groups.
-- `src/tokens/color/themeColors/base/neutral.ts` - base/neutral semantic color references по theme modes.
-- `src/tokens/color/themeColors/base/primary.ts` - base/primary semantic color references по theme modes.
-- `src/tokens/color/themeColors/base/status.ts` - base/status semantic color references по theme modes.
+- `src/tokens/color/themeColors/primary/` - semantic primary palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/neutral/` - semantic neutral palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/success/` - semantic success palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/warning/` - semantic warning palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/error/` - semantic error palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/attention/` - semantic attention palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/blue/` - semantic blue palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/purple/` - semantic purple palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/magenta/` - semantic magenta palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/teal/` - semantic teal palette; второй уровень: `base.ts`, `text.ts`, `stroke.ts`.
+- `src/tokens/color/themeColors/<palette>/index.ts` - palette-local агрегатор `base`, `text`, `stroke`.
 
-#### Shadow semantic colors
+#### Theme shadow colors
 
-- `src/tokens/color/themeColors/shadow/index.ts` - агрегатор shadow semantic colors.
-- `src/tokens/color/themeColors/shadow/shadow.ts` - theme-dependent color references для слоев shadows.
-
-#### Stroke semantic colors
-
-- `src/tokens/color/themeColors/stroke/extra.ts` - stroke/extra semantic color references по theme modes.
-- `src/tokens/color/themeColors/stroke/index.ts` - агрегатор stroke semantic color groups.
-- `src/tokens/color/themeColors/stroke/neutral.ts` - stroke/neutral semantic color references по theme modes.
-- `src/tokens/color/themeColors/stroke/primary.ts` - stroke/primary semantic color references по theme modes.
-- `src/tokens/color/themeColors/stroke/status.ts` - stroke/status semantic color references по theme modes.
-
-#### Text semantic colors
-
-- `src/tokens/color/themeColors/text/extra.ts` - text/extra semantic color references по theme modes.
-- `src/tokens/color/themeColors/text/index.ts` - агрегатор text semantic color groups.
-- `src/tokens/color/themeColors/text/neutral.ts` - text/neutral semantic color references по theme modes.
-- `src/tokens/color/themeColors/text/primary.ts` - text/primary semantic color references по theme modes.
-- `src/tokens/color/themeColors/text/status.ts` - text/status semantic color references по theme modes.
+- `src/tokens/color/themeShadowColors/index.ts` - агрегатор shadow semantic colors.
+- `src/tokens/color/themeShadowColors/themeShadowColors.ts` - source object `themeShadowColors` с theme-dependent color references для слоев shadows.
 
 ## Tokens: animation
 

@@ -91,8 +91,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px 40px 56px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 `;
 
 const StyledContent = styled.div`
@@ -125,7 +125,7 @@ const StyledExampleTitle = styled.h3`
 const StyledText = styled.p`
   max-width: 880px;
   margin: 0 0 26px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography['Body/Body 1 Long']}
 `;
 
@@ -138,10 +138,10 @@ const StyledTable = styled.table`
 
 const StyledHeaderCell = styled.th`
   padding: 18px 20px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   text-align: left;
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border-right: 1px solid ${({ theme }) => theme.color.stroke.neutral.subtle.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border-right: 1px solid ${({ theme }) => theme.color.neutral.stroke.subtle.rest};
   ${typography['Subtitle/Subtitle 2']}
 
   &:last-child {
@@ -151,7 +151,7 @@ const StyledHeaderCell = styled.th`
 
 const StyledCell = styled.td`
   padding: 18px 20px;
-  border-top: 1px solid ${({ theme }) => theme.color.stroke.neutral.subtle.rest};
+  border-top: 1px solid ${({ theme }) => theme.color.neutral.stroke.subtle.rest};
 `;
 
 const StyledExamples = styled.div`
@@ -180,7 +180,7 @@ const StyledCurve = styled.svg`
   display: block;
   width: 200px;
   height: 200px;
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 `;
 
 const StyledValue = styled.div`
@@ -192,7 +192,7 @@ const StyledPreview = styled.div`
   display: grid;
   gap: 20px;
   width: 360px;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${typography['Body/Body 1 Long']}
 `;
 
@@ -207,7 +207,7 @@ const StyledPreviewTrack = styled.div<{ $easing: string }>`
     width: 64px;
     height: 64px;
     content: '';
-    background: ${({ theme }) => theme.color.base.primary.base1.rest};
+    background: ${({ theme }) => theme.color.primary.base._1.rest};
     border-radius: 50%;
     animation: ${movePreviewBall} ${previewAnimationDuration}ms ${({ $easing }) => $easing} infinite;
   }
@@ -232,20 +232,20 @@ const CurveDiagram = ({ value }: { value: MotionEasingValue }) => {
       <path
         d="M 32 32 H 168 V 168 H 32 Z"
         fill="none"
-        stroke={theme.color.stroke.neutral.subtle.rest}
+        stroke={theme.color.neutral.stroke.subtle.rest}
         strokeDasharray="6 6"
         strokeWidth="2"
       />
-      <path d={`M ${start} L ${end}`} stroke={theme.color.stroke.neutral.subtle.rest} strokeWidth="2" />
+      <path d={`M ${start} L ${end}`} stroke={theme.color.neutral.stroke.subtle.rest} strokeWidth="2" />
       <path
         d={`M ${start} L ${control1} M ${control2} L ${end}`}
-        stroke={theme.color.stroke.neutral.stroke2.rest}
+        stroke={theme.color.neutral.stroke._2.rest}
         strokeWidth="2"
       />
       <path
         d={`M ${start} C ${control1} ${control2} ${end}`}
         fill="none"
-        stroke={theme.color.text.neutral.text1.rest}
+        stroke={theme.color.neutral.text._1.rest}
         strokeWidth="2"
       />
       {[start, control1, control2, end].map((point) => (
@@ -254,7 +254,7 @@ const CurveDiagram = ({ value }: { value: MotionEasingValue }) => {
           cx={point.split(',')[0]}
           cy={point.split(',')[1]}
           r="3"
-          fill={theme.color.base.primary.base1.rest}
+          fill={theme.color.primary.base._1.rest}
         />
       ))}
     </StyledCurve>

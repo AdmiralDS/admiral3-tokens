@@ -3,6 +3,7 @@ export { animation } from './tokens/animation';
 export { breakpoints } from './tokens/breakpoints';
 export { radius } from './tokens/radius';
 export { shadow } from './tokens/shadow';
+export { themeShadowColors } from './tokens/color/themeColors';
 export { textStyles, typographyPrimitives } from './tokens/typography';
 export { zIndex } from './tokens/zIndex';
 import { buildThemeColorReferences, themeModes } from './tokens/themes/buildTheme';

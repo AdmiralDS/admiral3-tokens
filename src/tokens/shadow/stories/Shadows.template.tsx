@@ -21,14 +21,14 @@ const themeByName = {
 const StyledPage = styled.section<{ $themeName: ShadowPreviewBlock['themeName'] }>`
   box-sizing: border-box;
   min-height: 100vh;
-  background: ${({ $themeName }) => themeByName[$themeName].color.base.neutral.base1.rest};
+  background: ${({ $themeName }) => themeByName[$themeName].color.neutral.base._1.rest};
 `;
 
 const StyledBlock = styled.section<{ $themeName: ShadowPreviewBlock['themeName'] }>`
   box-sizing: border-box;
   padding: 26px 22px 48px;
-  color: ${({ $themeName }) => themeByName[$themeName].color.text.neutral.text1.rest};
-  background: ${({ $themeName }) => themeByName[$themeName].color.base.neutral.base1.rest};
+  color: ${({ $themeName }) => themeByName[$themeName].color.neutral.text._1.rest};
+  background: ${({ $themeName }) => themeByName[$themeName].color.neutral.base._1.rest};
 `;
 
 const StyledList = styled.div`
@@ -43,15 +43,15 @@ const StyledCard = styled.article<{ $themeName: ShadowPreviewBlock['themeName'];
   flex: 0 0 200px;
   height: fit-content;
   padding: 20px;
-  background: ${({ $themeName }) => themeByName[$themeName].color.base.neutral.base1.rest};
-  border: 1px solid ${({ $themeName }) => themeByName[$themeName].color.stroke.neutral.stroke1.rest};
+  background: ${({ $themeName }) => themeByName[$themeName].color.neutral.base._1.rest};
+  border: 1px solid ${({ $themeName }) => themeByName[$themeName].color.neutral.stroke._1.rest};
   border-radius: ${({ $themeName }) => themeByName[$themeName].radius.byBase['4'].medium};
   box-shadow: ${({ $shadow }) => $shadow};
 `;
 
 const StyledTitle = styled.h2<{ $themeName: ShadowPreviewBlock['themeName'] }>`
   margin: 0 0 18px;
-  color: ${({ $themeName }) => themeByName[$themeName].color.text.neutral.text1.rest};
+  color: ${({ $themeName }) => themeByName[$themeName].color.neutral.text._1.rest};
   ${typography['Subtitle/Subtitle 2']}
 `;
 
@@ -66,19 +66,19 @@ const StyledLayer = styled.div`
 const StyledDivider = styled.div<{ $themeName: ShadowPreviewBlock['themeName'] }>`
   height: 1px;
   margin: 0 0 16px;
-  background: ${({ $themeName }) => themeByName[$themeName].color.stroke.neutral.subtle.rest};
+  background: ${({ $themeName }) => themeByName[$themeName].color.neutral.stroke.subtle.rest};
 `;
 
 const StyledRow = styled.div<{ $themeName: ShadowPreviewBlock['themeName'] }>`
   display: grid;
   grid-template-columns: 48px max-content;
   gap: 0;
-  color: ${({ $themeName }) => themeByName[$themeName].color.text.neutral.text2.rest};
+  color: ${({ $themeName }) => themeByName[$themeName].color.neutral.text._2.rest};
   ${typography['Caption/Caption 1']}
 `;
 
 const StyledValue = styled.span<{ $themeName: ShadowPreviewBlock['themeName'] }>`
-  color: ${({ $themeName }) => themeByName[$themeName].color.text.neutral.text1.rest};
+  color: ${({ $themeName }) => themeByName[$themeName].color.neutral.text._1.rest};
   white-space: nowrap;
 `;
 

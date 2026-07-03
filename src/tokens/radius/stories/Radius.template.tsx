@@ -12,8 +12,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 24px 32px 64px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
 
   @media (max-width: 720px) {
     padding: 20px 16px 48px;
@@ -33,14 +33,14 @@ const StyledSection = styled.section`
 
 const StyledSectionTitle = styled.h2`
   margin: 0 0 28px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Header/H5']}
 `;
 
 const StyledText = styled.p`
   max-width: 820px;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Body/Body 1 Long']}
 
   & + & {
@@ -54,7 +54,7 @@ const StyledGroupList = styled.dl`
   gap: 4px 8px;
   max-width: 860px;
   margin: 32px 0 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Body/Body 1 Long']}
 
   @media (max-width: 620px) {
@@ -87,7 +87,7 @@ const StyledTableShell = styled.article`
   min-width: 0;
   padding: 24px;
   overflow-x: auto;
-  background: var(--admiral-color-base-neutral-base2-rest, ${({ theme }) => theme.color.base.neutral.base2.rest});
+  background: var(--admiral-color-neutral-base-2-rest, ${({ theme }) => theme.color.neutral.base._2.rest});
   border-radius: ${({ theme }) => theme.radius.byBase['8'].small};
 
   @media (max-width: 720px) {
@@ -99,24 +99,24 @@ const StyledTable = styled.table`
   width: 100%;
   min-width: 680px;
   border-collapse: collapse;
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
   ${typography['Body/Body 1 Long']}
 `;
 
 const StyledHeaderCell = styled.th`
   padding: 14px 18px;
   text-align: left;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   border-bottom: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${({ theme }) => theme.color.stroke.neutral.subtle.rest});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${({ theme }) => theme.color.neutral.stroke.subtle.rest});
   ${typography['Subtitle/Subtitle 2']}
 `;
 
 const StyledCell = styled.td`
   padding: 14px 18px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   border-top: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${({ theme }) => theme.color.stroke.neutral.subtle.rest});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${({ theme }) => theme.color.neutral.stroke.subtle.rest});
 `;
 
 const StyledFirstColumnHeader = styled(StyledHeaderCell)`
@@ -139,10 +139,9 @@ const StyledField = styled.div<{ $radius: string }>`
   max-width: 100%;
   height: 36px;
   padding: 0 12px;
-  color: var(--admiral-color-text-neutral-text3-rest, ${({ theme }) => theme.color.text.neutral.text3.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
-  border: 1px solid
-    var(--admiral-color-stroke-neutral-stroke1-rest, ${({ theme }) => theme.color.stroke.neutral.stroke1.rest});
+  color: var(--admiral-color-neutral-text-3-rest, ${({ theme }) => theme.color.neutral.text._3.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest, ${({ theme }) => theme.color.neutral.stroke._1.rest});
   border-radius: ${({ $radius }) => $radius};
   ${typography['Body/Body 2 Long']}
 `;
@@ -176,8 +175,8 @@ const StyledButton = styled.button<{ $radius: string }>`
   gap: 8px;
   height: 36px;
   padding: 0 14px;
-  color: var(--admiral-color-text-neutral-inverted-rest, ${({ theme }) => theme.color.text.neutral.inverted.rest});
-  background: var(--admiral-color-base-neutral-inverted-rest, ${({ theme }) => theme.color.base.neutral.inverted.rest});
+  color: var(--admiral-color-neutral-text-inverted-rest, ${({ theme }) => theme.color.neutral.text.inverted.rest});
+  background: var(--admiral-color-neutral-base-inverted-rest, ${({ theme }) => theme.color.neutral.base.inverted.rest});
   border: 0;
   border-radius: ${({ $radius }) => $radius};
   ${typography['Button/Button 2']}
@@ -186,7 +185,7 @@ const StyledButton = styled.button<{ $radius: string }>`
 const StyledNote = styled.p`
   max-width: 820px;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Body/Body 1 Long']}
 `;
 
