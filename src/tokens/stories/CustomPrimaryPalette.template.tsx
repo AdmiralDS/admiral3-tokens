@@ -76,8 +76,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 
   @media (max-width: 720px) {
     padding: 20px;
@@ -98,14 +98,14 @@ const StyledHeader = styled.header`
 
 const StyledTitle = styled.h1`
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography.textStyles.header.h4}
 `;
 
 const StyledLead = styled.p`
   max-width: 720px;
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${textStyles.body.body1Long}
 `;
 
@@ -134,14 +134,14 @@ const StyledBaseText = styled.div`
 `;
 
 const StyledLabel = styled.div`
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${textStyles.body.body2Short}
 `;
 
 const StyledValue = styled.code`
   min-width: 0;
   overflow-wrap: anywhere;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${textStyles.monospace.mono3}
 `;
 
@@ -149,7 +149,7 @@ const StyledPalette = styled.div`
   display: grid;
   grid-template-columns: repeat(17, minmax(0, 1fr));
   overflow: hidden;
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.subtle.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke.subtle.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 
   @media (max-width: 720px) {
@@ -167,7 +167,7 @@ const StyledColor = styled.div<{ $color: string }>`
 `;
 
 const StyledColorName = styled.span`
-  color: ${({ theme }) => theme.color.text.neutral.staticWhite['1']};
+  color: ${({ theme }) => theme.color.neutral.text.staticWhite._1};
   ${textStyles.caption.caption2}
 `;
 
@@ -176,8 +176,8 @@ const StyledCode = styled.pre`
   margin: 0;
   padding: 16px;
   overflow: auto;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base3.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
+  background: ${({ theme }) => theme.color.neutral.base._3.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   ${textStyles.monospace.mono3}
 `;
@@ -197,8 +197,8 @@ const StyledExampleBlock = styled.div`
   align-content: start;
   gap: 16px;
   padding: 16px;
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 `;
 
@@ -219,7 +219,7 @@ const StyledStateButton = styled.button`
   width: fit-content;
   min-height: 44px;
   padding: 10px 16px;
-  color: ${({ theme }) => theme.color.text.neutral.staticWhite['1']};
+  color: ${({ theme }) => theme.color.neutral.text.staticWhite._1};
   background: var(--admiral-color-global-primary-primary110);
   border: 1px solid var(--admiral-color-global-primary-primary110);
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
@@ -253,32 +253,32 @@ const StyledErrorStateButton = styled(StyledStateButton)`
 `;
 
 const StyledThemeStateButton = styled(StyledStateButton)`
-  background: ${({ theme }) => theme.color.base.primary.base1.rest};
-  border-color: ${({ theme }) => theme.color.base.primary.base1.rest};
+  background: ${({ theme }) => theme.color.primary.base._1.rest};
+  border-color: ${({ theme }) => theme.color.primary.base._1.rest};
 
   &:hover {
-    background: ${({ theme }) => theme.color.base.primary.base1.hover};
-    border-color: ${({ theme }) => theme.color.base.primary.base1.hover};
+    background: ${({ theme }) => theme.color.primary.base._1.hover};
+    border-color: ${({ theme }) => theme.color.primary.base._1.hover};
   }
 
   &:active {
-    background: ${({ theme }) => theme.color.base.primary.base1.press};
-    border-color: ${({ theme }) => theme.color.base.primary.base1.press};
+    background: ${({ theme }) => theme.color.primary.base._1.press};
+    border-color: ${({ theme }) => theme.color.primary.base._1.press};
   }
 `;
 
 const StyledThemeErrorStateButton = styled(StyledStateButton)`
-  background: ${({ theme }) => theme.color.base.status.error.base1.rest};
-  border-color: ${({ theme }) => theme.color.base.status.error.base1.rest};
+  background: ${({ theme }) => theme.color.error.base._1.rest};
+  border-color: ${({ theme }) => theme.color.error.base._1.rest};
 
   &:hover {
-    background: ${({ theme }) => theme.color.base.status.error.base1.hover};
-    border-color: ${({ theme }) => theme.color.base.status.error.base1.hover};
+    background: ${({ theme }) => theme.color.error.base._1.hover};
+    border-color: ${({ theme }) => theme.color.error.base._1.hover};
   }
 
   &:active {
-    background: ${({ theme }) => theme.color.base.status.error.base1.press};
-    border-color: ${({ theme }) => theme.color.base.status.error.base1.press};
+    background: ${({ theme }) => theme.color.error.base._1.press};
+    border-color: ${({ theme }) => theme.color.error.base._1.press};
   }
 `;
 

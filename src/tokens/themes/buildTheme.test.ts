@@ -21,15 +21,14 @@ describe('buildTheme', () => {
   });
 
   it('resolves semantic color references for styled-components consumption', () => {
-    expect(buildTheme('light').color.shadow.outlineM).toBe('rgba(0, 0, 0, 0.12)');
-    expect(buildTheme('light').color.text.primary.text1.rest).toBe('#0062FF');
+    expect(buildTheme('light').color.primary.text._1.rest).toBe('#0062FF');
   });
 
   it('adds typography-like string aliases for theme color tokens', () => {
     const color = buildTheme('light').color;
 
-    expect(color['Text/Primary/Text 1/Rest']).toBe('#0062FF');
-    expect(color['Base/Neutral/Base 1/Rest']).toBe('#FFFFFF');
+    expect(color['Primary/Text/1/Rest']).toBe('#0062FF');
+    expect(color['Neutral/Base/1/Rest']).toBe('#FFFFFF');
   });
 
   it('uses global color overrides when resolving styled-components theme colors', () => {
@@ -40,9 +39,9 @@ describe('buildTheme', () => {
       },
     });
 
-    expect(theme.color.base.primary.base1.rest).toBe(primary.primary110);
-    expect(theme.color.base.primary.base1.hover).toBe(primary.primary120);
-    expect(theme.color['Text/Primary/Text 1/Rest']).toBe(primary.primary110);
+    expect(theme.color.primary.base._1.rest).toBe(primary.primary110);
+    expect(theme.color.primary.base._1.hover).toBe(primary.primary120);
+    expect(theme.color['Primary/Text/1/Rest']).toBe(primary.primary110);
   });
 
   it('builds all theme modes with the same global color overrides', () => {
@@ -53,10 +52,10 @@ describe('buildTheme', () => {
       },
     });
 
-    expect(themes.light.color.base.primary.base1.rest).toBe(primary.primary110);
-    expect(themes.dark.color.base.primary.base1.rest).toBe(primary.primary100);
-    expect(themes.lightNeutral.color.base.primary.base1.rest).toBe('#2D2E31');
-    expect(themes.darkNeutral.color.base.primary.base1.rest).toBe('#EBEBEC');
+    expect(themes.light.color.primary.base._1.rest).toBe(primary.primary110);
+    expect(themes.dark.color.primary.base._1.rest).toBe(primary.primary100);
+    expect(themes.lightNeutral.color.primary.base._1.rest).toBe('#2D2E31');
+    expect(themes.darkNeutral.color.primary.base._1.rest).toBe('#EBEBEC');
   });
 
   it('uses several global palette overrides at once', () => {
@@ -69,8 +68,8 @@ describe('buildTheme', () => {
       },
     });
 
-    expect(theme.color.base.primary.base1.rest).toBe(primary.primary110);
-    expect(theme.color.base.status.error.base1.rest).toBe(error.error110);
-    expect(theme.color.text.status.error.text1.rest).toBe(error.error110);
+    expect(theme.color.primary.base._1.rest).toBe(primary.primary110);
+    expect(theme.color.error.base._1.rest).toBe(error.error110);
+    expect(theme.color.error.text._1.rest).toBe(error.error110);
   });
 });

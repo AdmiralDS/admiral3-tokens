@@ -1,9 +1,9 @@
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { neutralBase } from '../base/neutral';
+import { neutral } from '../neutral';
 
 const neutralBaseConfig = createThemeColorsSectionsConfig({
-  source: neutralBase,
+  source: neutral,
   sourceMode: 'lightDark',
   themeSection: 'base',
   tokenGroup: 'neutral',

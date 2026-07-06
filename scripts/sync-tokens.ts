@@ -139,8 +139,8 @@ const createObject = () => ({}) as GeneratedObject;
 /**
  * Записывает значение в объект по вложенному пути и создаёт промежуточные объекты, если их ещё нет.
  *
- * Используется при сборке theme maps, где Pixso path вроде `Text/Primary/Text 1/Rest` должен стать
- * вложенной структурой `text1.rest`.
+ * Используется при сборке theme maps, где Pixso path вроде `Primary/Text/1/Rest` должен стать
+ * вложенной структурой `_1.rest`.
  */
 const setNestedValue = (target: GeneratedObject, pathParts: readonly string[], value: GeneratedValue) => {
   let current = target;
@@ -254,20 +254,6 @@ const pickObjectKeys = (sourceObject: GeneratedObject, keys: readonly string[]) 
     keys.filter((key) => key in sourceObject).map((key) => [key, sourceObject[key]]),
   ) as GeneratedObject;
 
-/** Пересобирает объект с theme modes в заданном порядке и внутри каждого mode упорядочивает token keys. */
-const reorderModeTokenKeys = (
-  sourceObject: GeneratedObject,
-  modes: readonly ThemeMode[],
-  keys: readonly string[],
-): GeneratedObject =>
-  Object.fromEntries(
-    modes.map((mode) => {
-      const modeTokens = sourceObject[mode] as GeneratedObject;
-
-      return [mode, pickObjectKeys(modeTokens, keys)];
-    }),
-  ) as GeneratedObject;
-
 /**
  * Генерирует global color token maps.
  *
@@ -334,12 +320,12 @@ const buildGlobalColorMaps = async () => {
 /**
  * Преобразует сегмент Pixso пути в ключ theme object.
  *
- * Первый числовой сегмент получает prefix семейства (`base8`, `text1`, `stroke2`), остальные сегменты
- * переводятся в camelCase.
+ * Числовые сегменты получают безопасный для dot-access prefix (`_1`, `_2`, `_3`).
+ * Остальные сегменты переводятся в camelCase.
  */
-const sourceSegmentToThemeKey = (family: ThemeFamily, segment: string, index: number) => {
-  if (index === 0 && /^\d+$/.test(segment)) {
-    return `${family}${segment}`;
+const sourceSegmentToThemeKey = (segment: string) => {
+  if (/^\d+$/.test(segment)) {
+    return `_${segment}`;
   }
 
   return camelCase(segment);
@@ -349,7 +335,7 @@ const sourceSegmentToThemeKey = (family: ThemeFamily, segment: string, index: nu
  * Добавляет tokens одного семейства в целевой theme map.
  *
  * `sourcePrefix` выбирает ветку Pixso variables, `modePath` добавляет дополнительный уровень для групп
- * вроде `status.error`, а `mode` кладёт значение в нужную тему.
+ * вроде `status.error`, а `mode` кладёт значение в leaf-узел токена.
  */
 const addThemeTokens = (
   target: GeneratedObject,
@@ -370,10 +356,39 @@ const addThemeTokens = (
       const tokenPath = name
         .slice(prefix.length)
         .split('/')
-        .map((segment, index) => sourceSegmentToThemeKey(options.family, segment, index));
+        .map((segment) => sourceSegmentToThemeKey(segment));
 
-      setNestedValue(target, [...options.modePath, mode, ...tokenPath], sourceReferenceToTokenReference(String(value)));
+      setNestedValue(target, [...options.modePath, ...tokenPath, mode], sourceReferenceToTokenReference(String(value)));
     });
+};
+
+/**
+ * Пишет три source-файла одной theme palette: `base.ts`, `text.ts` и `stroke.ts`.
+ *
+ * `paletteName` определяет папку внутри `themeColors`, а `typePrefix` сохраняет публичные имена типов
+ * в стиле `PrimaryBase` или `SuccessText`. `textValue` оставлен как явная точка подмены для палитр, где
+ * text tokens нужно отрендерить не из стандартного `palette.text`.
+ */
+const writeThemePaletteFiles = async (
+  paletteName: string,
+  palette: Record<ThemeFamily, GeneratedObject>,
+  options: {
+    typePrefix: string;
+    textValue?: GeneratedObject;
+  },
+) => {
+  await writeGeneratedFile(
+    `src/tokens/color/themeColors/${paletteName}/base.ts`,
+    renderExportedConst(`${paletteName}Base`, palette.base, `${options.typePrefix}Base`),
+  );
+  await writeGeneratedFile(
+    `src/tokens/color/themeColors/${paletteName}/text.ts`,
+    renderExportedConst(`${paletteName}Text`, options.textValue ?? palette.text, `${options.typePrefix}Text`),
+  );
+  await writeGeneratedFile(
+    `src/tokens/color/themeColors/${paletteName}/stroke.ts`,
+    renderExportedConst(`${paletteName}Stroke`, palette.stroke, `${options.typePrefix}Stroke`),
+  );
 };
 
 /**
@@ -403,7 +418,7 @@ const buildThemeColorMaps = async () => {
     text: createObject(),
     stroke: createObject(),
   };
-  const shadowColors = createObject();
+  const themeShadowColors = createObject();
 
   Object.entries(themeModeSourceNames).forEach(([modeName, sourceName]) => {
     const mode = modeName as ThemeMode;
@@ -453,80 +468,59 @@ const buildThemeColorMaps = async () => {
       .forEach(([name, value]) => {
         const key = camelCase(name.replace('--Shadows/', '').replace(/^О/, 'O'));
 
-        setNestedValue(shadowColors, [key, mode], sourceReferenceToTokenReference(String(value)));
+        setNestedValue(themeShadowColors, [key, mode], sourceReferenceToTokenReference(String(value)));
       });
   });
 
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/base/neutral.ts',
-    renderExportedConst(
-      'neutralBase',
-      {
-        light: neutral.base.light,
-        dark: neutral.base.dark,
-      } as GeneratedObject,
-      'NeutralBase',
-    ),
+  // Neutral и Primary пишутся как самостоятельные palette-папки с одинаковыми файлами base/text/stroke.
+  await writeThemePaletteFiles(
+    'neutral',
+    {
+      base: neutral.base,
+      text: neutral.text,
+      stroke: neutral.stroke,
+    },
+    { typePrefix: 'Neutral' },
   );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/base/primary.ts',
-    renderExportedConst('primaryBase', primary.base, 'PrimaryBase'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/base/status.ts',
-    renderExportedConst('statusBase', status.base, 'StatusBase'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/base/extra.ts',
-    renderExportedConst('extraBase', extra.base, 'ExtraBase'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/text/neutral.ts',
-    // Для neutral text порядок важен для читаемости generated-файла и совпадения с публичной документацией.
-    renderExportedConst(
-      'neutralText',
-      reorderModeTokenKeys(
-        neutral.text,
-        ['light', 'dark', 'lightNeutral', 'darkNeutral'],
-        ['text1', 'text2', 'text3', 'inverted', 'disable', 'staticWhite', 'staticBlack'],
+  await writeThemePaletteFiles('primary', primary, { typePrefix: 'Primary' });
+
+  // Status palettes в Pixso собираются в общую структуру `status.<group>`, а на выходе расходятся по папкам.
+  await Promise.all(
+    statusGroups.map((group) =>
+      writeThemePaletteFiles(
+        group,
+        {
+          base: status.base[group] as GeneratedObject,
+          text: status.text[group] as GeneratedObject,
+          stroke: status.stroke[group] as GeneratedObject,
+        },
+        { typePrefix: capitalize(group) },
       ),
-      'NeutralText',
     ),
   );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/text/primary.ts',
-    renderExportedConst('primaryText', primary.text, 'PrimaryText'),
+
+  // Extra palettes проходят тот же путь, что и Status: общий source object превращается в palette-first файлы.
+  await Promise.all(
+    extraGroups.map((group) =>
+      writeThemePaletteFiles(
+        group,
+        {
+          base: extra.base[group] as GeneratedObject,
+          text: extra.text[group] as GeneratedObject,
+          stroke: extra.stroke[group] as GeneratedObject,
+        },
+        { typePrefix: capitalize(group) },
+      ),
+    ),
   );
+
+  // Shadow references живут рядом с theme colors в Pixso, но в пакете хранятся отдельной source-группой.
   await writeGeneratedFile(
-    'src/tokens/color/themeColors/text/status.ts',
-    renderExportedConst('statusText', status.text, 'StatusText'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/text/extra.ts',
-    renderExportedConst('extraText', extra.text, 'ExtraText'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/stroke/neutral.ts',
-    renderExportedConst('neutralStroke', neutral.stroke, 'NeutralStroke'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/stroke/primary.ts',
-    renderExportedConst('primaryStroke', primary.stroke, 'PrimaryStroke'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/stroke/status.ts',
-    renderExportedConst('statusStroke', status.stroke, 'StatusStroke'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/stroke/extra.ts',
-    renderExportedConst('extraStroke', extra.stroke, 'ExtraStroke'),
-  );
-  await writeGeneratedFile(
-    'src/tokens/color/themeColors/shadow/shadow.ts',
+    'src/tokens/color/themeShadowColors/themeShadowColors.ts',
     renderExportedConst(
-      'shadowColors',
-      pickObjectKeys(shadowColors, ['outlineM', 'mainM', 'outlineL', 'mainL']),
-      'ShadowColors',
+      'themeShadowColors',
+      pickObjectKeys(themeShadowColors, ['outlineM', 'mainM', 'outlineL', 'mainL']),
+      'ThemeShadowColors',
     ),
   );
 };

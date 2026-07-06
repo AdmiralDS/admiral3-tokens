@@ -30,8 +30,8 @@ const StyledPage = styled.section<{ $hasFullWidthLastBlock?: boolean }>`
   box-sizing: border-box;
   min-height: 100vh;
   padding: ${({ $hasFullWidthLastBlock }) => `16px 26px ${$hasFullWidthLastBlock ? 0 : 48}px`};
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
 `;
 
 const StyledPageTitle = styled.h1`
@@ -82,8 +82,7 @@ const StyledSwatchColor = styled.div<{ $color: string; $hasBorder?: boolean }>`
   width: 100%;
   height: 100%;
   background: ${({ $color }) => $color};
-  border: ${({ $hasBorder, theme }) =>
-    $hasBorder ? `1px solid ${theme.color.stroke.neutral.stroke1.rest}` : undefined};
+  border: ${({ $hasBorder, theme }) => ($hasBorder ? `1px solid ${theme.color.neutral.stroke._1.rest}` : undefined)};
 `;
 
 const StyledTokenName = styled.div`
@@ -93,7 +92,7 @@ const StyledTokenName = styled.div`
 
 const StyledTokenValue = styled.div<{ $isInverted?: boolean }>`
   margin-top: 8px;
-  color: ${({ $isInverted, theme }) => ($isInverted ? 'currentColor' : theme.color.text.neutral.text2.rest)};
+  color: ${({ $isInverted, theme }) => ($isInverted ? 'currentColor' : theme.color.neutral.text._2.rest)};
   opacity: ${({ $isInverted }) => ($isInverted ? 0.64 : 1)};
   ${typography['Body/Body 1 Short']}
 `;

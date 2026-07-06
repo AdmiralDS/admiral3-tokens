@@ -23,9 +23,9 @@ const modeOptions = Object.keys(themeMap) as ThemeMode[];
 const StyledShell = styled.section`
   width: min(760px, 100%);
   padding: ${({ theme }) => theme.radius.byBase['8'].large};
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['8'].large};
 `;
 
@@ -40,18 +40,18 @@ const StyledModeButton = styled.button<{ $active: boolean }>`
   min-height: 32px;
   padding: 0 12px;
   color: ${({ $active, theme }) =>
-    $active ? theme.color.text.neutral.staticWhite['1'] : theme.color.text.neutral.text1.rest};
+    $active ? theme.color.neutral.text.staticWhite._1 : theme.color.neutral.text._1.rest};
   background: ${({ $active, theme }) =>
-    $active ? theme.color.base.primary.base1.rest : theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+    $active ? theme.color.primary.base._1.rest : theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   cursor: pointer;
 `;
 
 const StyledCard = styled.article`
   padding: 20px;
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['6'].large};
   box-shadow: ${({ theme }) => theme.shadow.shadow08};
 `;
@@ -70,7 +70,7 @@ const StyledSurface = styled.div`
 const StyledEyebrow = styled.span`
   display: block;
   margin-bottom: 8px;
-  color: ${({ theme }) => theme.color.text.primary.text1.rest};
+  color: ${({ theme }) => theme.color.primary.text._1.rest};
   ${typography['Caption/Caption 1']}
 `;
 
@@ -82,7 +82,7 @@ const StyledTitle = styled.h2`
 const StyledText = styled.p`
   margin: 0;
   max-width: 520px;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${typography['Body/Body 2 Long']}
 `;
 
@@ -97,12 +97,12 @@ const StyledActionButton = styled.button<{ $variant?: 'primary' | 'secondary' }>
   min-height: 36px;
   padding: 0 14px;
   color: ${({ $variant = 'primary', theme }) =>
-    $variant === 'primary' ? theme.color.text.neutral.staticWhite['1'] : theme.color.text.neutral.text1.rest};
+    $variant === 'primary' ? theme.color.neutral.text.staticWhite._1 : theme.color.neutral.text._1.rest};
   background: ${({ $variant = 'primary', theme }) =>
-    $variant === 'primary' ? theme.color.base.primary.base1.rest : theme.color.base.neutral.base1.rest};
+    $variant === 'primary' ? theme.color.primary.base._1.rest : theme.color.neutral.base._1.rest};
   border: 1px solid
     ${({ $variant = 'primary', theme }) =>
-      $variant === 'primary' ? theme.color.stroke.primary.stroke1.rest : theme.color.stroke.neutral.stroke2.rest};
+      $variant === 'primary' ? theme.color.primary.stroke._1.rest : theme.color.neutral.stroke._2.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 `;
 
@@ -117,12 +117,12 @@ const StyledSwatch = styled.span<{ $tone: 'primary' | 'success' | 'warning' | 'e
   aspect-ratio: 1;
   background: ${({ $tone, theme }) => {
     if ($tone === 'primary') {
-      return theme.color.base.primary.base1.rest;
+      return theme.color.primary.base._1.rest;
     }
 
-    return theme.color.base.status[$tone].base1.rest;
+    return theme.color[$tone].base._1.rest;
   }};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.stroke1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke._1.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 `;
 

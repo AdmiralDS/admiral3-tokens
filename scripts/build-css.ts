@@ -29,6 +29,7 @@ import {
   radius,
   shadow,
   textStyles,
+  themeShadowColors,
   themeModes,
   themes,
   typographyPrimitives,
@@ -78,6 +79,7 @@ type GeneratedCssParts = {
  */
 export const toKebab = (value: string | number) =>
   String(value)
+    .replace(/^_(\d+)$/, '$1')
     .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
     .replace(/_/g, '-')
     .toLowerCase();
@@ -86,8 +88,8 @@ export const toKebab = (value: string | number) =>
  * Builds a public CSS custom property name from token path segments.
  *
  * @example
- * toVarName(['color', 'text', 'neutral', 'text1', 'rest']);
- * // '--admiral-color-text-neutral-text1-rest'
+ * toVarName(['color', 'neutral', 'text', '_1', 'rest']);
+ * // '--admiral-color-neutral-text-1-rest'
  */
 export const toVarName = (parts: readonly (string | number)[]) => [cssPrefix, ...parts.map(toKebab)].join('-');
 
@@ -219,9 +221,25 @@ const buildThemeVariablesByMode = (): ThemeVariablesByMode =>
   Object.fromEntries(
     themeModes.map((mode) => [
       mode,
-      buildFlatVariables('color', themes[mode].color as TokenRecord, { resolveColorReferences: true }),
+      [
+        ...buildFlatVariables('color', themes[mode].color as TokenRecord, { resolveColorReferences: true }),
+        ...buildFlatVariables('color-shadow', selectThemeMode(themeShadowColors, mode) as TokenRecord, {
+          resolveColorReferences: true,
+        }),
+      ],
     ]),
   ) as ThemeVariablesByMode;
+
+const selectThemeMode = (value: TokenRecord, mode: ThemeMode): TokenRecord =>
+  Object.fromEntries(
+    Object.entries(value).map(([key, nestedValue]) => {
+      if (isRecord(nestedValue) && mode in nestedValue && typeof nestedValue[mode] === 'string') {
+        return [key, nestedValue[mode]];
+      }
+
+      return [key, isRecord(nestedValue) ? selectThemeMode(nestedValue, mode) : nestedValue];
+    }),
+  );
 
 export const buildTypographyVariables = (): VariableEntry[] => [
   ...buildFlatVariables('typography-primitives', typographyPrimitives as TokenRecord),
@@ -255,7 +273,7 @@ export const buildAnimationVariables = (): VariableEntry[] =>
  * Resolves the light-theme fallback for a shadow layer color token.
  */
 const getLightShadowColorFallback = (color: string) =>
-  resolveGlobalColorReference(themes.light.color.shadow[color as keyof typeof themes.light.color.shadow]);
+  resolveGlobalColorReference(themeShadowColors[color as keyof typeof themeShadowColors].light);
 
 /**
  * Builds shadow geometry variables.

@@ -18,7 +18,7 @@ export type TypographyRow = {
 
 export type TypographyColorToken = {
   cssVariable: string;
-  tokenName: `Text/${string}`;
+  tokenName: `${'Primary' | 'Neutral' | 'Success' | 'Warning' | 'Error' | 'Attention' | 'Blue' | 'Purple' | 'Magenta' | 'Teal'}/Text/${string}`;
 };
 
 export type TypographySection = {
@@ -44,23 +44,23 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 26px 24px 48px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
-  background: var(--admiral-color-base-neutral-base1-rest, ${(p) => p.theme.color['Base/Neutral/Base 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
+  background: var(--admiral-color-neutral-base-1-rest, ${(p) => p.theme.color['Neutral/Base/1/Rest']});
 `;
 
 const StyledSectionTitle = styled.h2`
   box-sizing: border-box;
   margin: 0 0 56px;
   padding: 24px 28px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
-  background: var(--admiral-color-base-neutral-base2-rest, ${(p) => p.theme.color['Base/Neutral/Base 2/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
+  background: var(--admiral-color-neutral-base-2-rest, ${(p) => p.theme.color['Neutral/Base/2/Rest']});
   border-radius: var(--admiral-radius-by-base-4-medium, ${(p) => p.theme.radius['By Base/4/Medium']});
   ${typography['Header/H6']}
 `;
 
 const StyledList = styled.div`
   border-bottom: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${(p) => p.theme.color['Stroke/Neutral/Subtle/Rest']});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${(p) => p.theme.color['Neutral/Stroke/Subtle/Rest']});
 `;
 
 const StyledSection = styled.section`
@@ -72,7 +72,7 @@ const StyledSection = styled.section`
 const StyledTitle = styled.h1`
   max-width: 1024px;
   margin: 0 auto 10px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${typography['Header/H4']}
 `;
 
@@ -93,7 +93,7 @@ const StyledRow = styled.article<{ $hasColors: boolean }>`
   min-height: 154px;
   padding: 0 0 54px;
   border-top: 1px solid
-    var(--admiral-color-stroke-neutral-subtle-rest, ${(p) => p.theme.color['Stroke/Neutral/Subtle/Rest']});
+    var(--admiral-color-neutral-stroke-subtle-rest, ${(p) => p.theme.color['Neutral/Stroke/Subtle/Rest']});
 
   &:first-child {
     border-top: 0;
@@ -134,7 +134,7 @@ const StyledSample = styled.div<{ $styleName: TypographyTextStyleName }>`
   grid-area: sample;
   min-width: 0;
   margin: -4px 0 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${({ $styleName }) => typography[$styleName]}
 `;
 
@@ -145,12 +145,12 @@ const StyledMeta = styled.dl`
   gap: 2px 4px;
   min-width: 0;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${typography['Body/Body 2 Long']}
 `;
 
 const StyledTerm = styled.dt`
-  color: var(--admiral-color-text-neutral-text2-rest, ${(p) => p.theme.color['Text/Neutral/Text 2/Rest']});
+  color: var(--admiral-color-neutral-text-2-rest, ${(p) => p.theme.color['Neutral/Text/2/Rest']});
 `;
 
 const StyledValue = styled.dd`
@@ -163,7 +163,7 @@ const StyledDescription = styled.p`
   min-width: 0;
   max-width: 320px;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${typography['Body/Body 2 Long']}
 `;
 
@@ -175,7 +175,7 @@ const StyledColors = styled.div`
 
 const StyledColorsTitle = styled.div`
   margin-bottom: 18px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${(p) => p.theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${(p) => p.theme.color['Neutral/Text/1/Rest']});
   ${typography['Body/Body 2 Long']}
 `;
 
@@ -200,7 +200,7 @@ const StyledColor = styled.span<{
   border: 1px solid
     ${(p) =>
       p.$isWhite
-        ? `var(--admiral-color-stroke-neutral-stroke1-rest, ${p.theme.color['Stroke/Neutral/Stroke 1/Rest']})`
+        ? `var(--admiral-color-neutral-stroke-1-rest, ${p.theme.color['Neutral/Stroke/1/Rest']})`
         : `var(${p.$cssVariable}, ${p.theme.color[p.$tokenName]})`};
   border-radius: var(--admiral-radius-by-base-8-large, ${(p) => p.theme.radius['By Base/8/Large']});
 `;
@@ -240,7 +240,7 @@ export const TypographyTemplate = ({ sections }: TypographyTemplateProps) => {
                             key={tokenName}
                             $cssVariable={cssVariable}
                             $tokenName={tokenName}
-                            $isWhite={tokenName === 'Text/Neutral/Static White/1'}
+                            $isWhite={tokenName === 'Neutral/Text/Static White/1'}
                           />
                         ))}
                       </StyledColorList>

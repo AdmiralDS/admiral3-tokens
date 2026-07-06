@@ -467,8 +467,9 @@ browser/runtime integration.
 13. Сценарии, которые зависят от текущей `styled-components` темы, должны использовать общий переключатель темы playground, если им не нужен отдельный локальный control; выбранная тема должна сохраняться при переключении сценариев.
 14. Интерактивные token stories должны использовать доступные нативные элементы управления или явно заданные ARIA-роли.
 15. Theme Colors templates должны использовать общий source-driven renderer, чтобы группы и states брались из token source, а не дублировались вручную в story.
-16. Storybook templates и playground UI должны строить цвета, типографику, радиусы и тени из token API, theme object или generated CSS variables. Не добавляйте локальные hex/rgb-цвета, ручные font-family/font-size/line-height/font-weight или фиксированные `border-radius`, если соответствующее значение уже есть в токенах.
-17. Для демонстрации global palette или генератора палитр исходные цветовые значения тоже нужно брать из token source, когда пример не имитирует внешний consumer input.
+16. Публичная и source-группировка theme colors строится как palette -> base/text/stroke: `primary`, `neutral`, `success`, `warning`, `error`, `attention`, `blue`, `purple`, `magenta`, `teal`; внутри каждой palette-папки должны лежать `base.ts`, `text.ts`, `stroke.ts`, а mode должен быть leaf-ключом токена, например `themeColors.primary.base._1.rest.light`. Не добавляйте отдельные section-first агрегаты `base`, `text`, `stroke`, `status*`, `extra*` и palette-local re-exports вроде `primaryBase`.
+17. Storybook templates и playground UI должны строить цвета, типографику, радиусы и тени из token API, theme object или generated CSS variables. Не добавляйте локальные hex/rgb-цвета, ручные font-family/font-size/line-height/font-weight или фиксированные `border-radius`, если соответствующее значение уже есть в токенах.
+18. Для демонстрации global palette или генератора палитр исходные цветовые значения тоже нужно брать из token source, когда пример не имитирует внешний consumer input.
 
 ### Минимальный Definition of Done для новых токенов
 

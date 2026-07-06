@@ -1,20 +1,20 @@
 import type { TypographyColorToken, TypographySection, TypographyTemplateProps } from './Typography.template';
 
 const neutralColors = [
-  { cssVariable: '--admiral-color-text-neutral-text1-rest', tokenName: 'Text/Neutral/Text 1/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-text2-rest', tokenName: 'Text/Neutral/Text 2/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-static-white-1', tokenName: 'Text/Neutral/Static White/1' },
+  { cssVariable: '--admiral-color-neutral-text-1-rest', tokenName: 'Neutral/Text/1/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-2-rest', tokenName: 'Neutral/Text/2/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-static-white-1', tokenName: 'Neutral/Text/Static White/1' },
 ] satisfies TypographyColorToken[];
 
 const fullColors = [
-  { cssVariable: '--admiral-color-text-neutral-text1-rest', tokenName: 'Text/Neutral/Text 1/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-text2-rest', tokenName: 'Text/Neutral/Text 2/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-text3-rest', tokenName: 'Text/Neutral/Text 3/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-disable-rest', tokenName: 'Text/Neutral/Disable/Rest' },
-  { cssVariable: '--admiral-color-text-neutral-static-white-1', tokenName: 'Text/Neutral/Static White/1' },
-  { cssVariable: '--admiral-color-text-primary-link-rest', tokenName: 'Text/Primary/Link/Rest' },
-  { cssVariable: '--admiral-color-text-status-error-text1-rest', tokenName: 'Text/Status/Error/Text 1/Rest' },
-  { cssVariable: '--admiral-color-text-status-success-text1-rest', tokenName: 'Text/Status/Success/Text 1/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-1-rest', tokenName: 'Neutral/Text/1/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-2-rest', tokenName: 'Neutral/Text/2/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-3-rest', tokenName: 'Neutral/Text/3/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-disable-rest', tokenName: 'Neutral/Text/Disable/Rest' },
+  { cssVariable: '--admiral-color-neutral-text-static-white-1', tokenName: 'Neutral/Text/Static White/1' },
+  { cssVariable: '--admiral-color-primary-text-link-rest', tokenName: 'Primary/Text/Link/Rest' },
+  { cssVariable: '--admiral-color-error-text-1-rest', tokenName: 'Error/Text/1/Rest' },
+  { cssVariable: '--admiral-color-success-text-1-rest', tokenName: 'Success/Text/1/Rest' },
 ] satisfies TypographyColorToken[];
 
 const headersTypographyArgs = {

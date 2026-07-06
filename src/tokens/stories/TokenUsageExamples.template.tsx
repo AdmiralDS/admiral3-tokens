@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 
 import { styled } from 'styled-components';
 
-import { globalColors, radius, shadow, textStyles, themeColors, typography } from '@admiral-ds/admiral3-tokens';
+import { globalColors, radius, textStyles, themeColors, typography } from '@admiral-ds/admiral3-tokens';
 
 const body2LongInlineStyle: CSSProperties = typography['Body/Body 2 Long'];
 
@@ -10,8 +10,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 32px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
 
   @media (max-width: 720px) {
     padding: 20px;
@@ -25,14 +25,14 @@ const StyledHeader = styled.header`
 
 const StyledTitle = styled.h1`
   margin: 0 0 8px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color['Text/Neutral/Text 1/Rest']});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color['Neutral/Text/1/Rest']});
   ${typography['Header/H4']}
 `;
 
 const StyledLead = styled.p`
   max-width: 760px;
   margin: 0;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
   ${textStyles.body.body1Long}
 `;
 
@@ -52,15 +52,15 @@ const StyledCard = styled.article`
   box-sizing: border-box;
   min-width: 0;
   padding: 24px;
-  background: ${({ theme }) => theme.color.base.neutral.base2.rest};
-  border: 1px solid ${({ theme }) => theme.color['Stroke/Neutral/Stroke 1/Rest']};
+  background: ${({ theme }) => theme.color.neutral.base._2.rest};
+  border: 1px solid ${({ theme }) => theme.color['Neutral/Stroke/1/Rest']};
   border-radius: ${({ theme }) => theme.radius['By Base/8/Large']};
   box-shadow: var(--admiral-shadow-shadow08, ${({ theme }) => theme.shadow['Shadow 08']});
 `;
 
 const StyledCardTitle = styled.h2`
   margin: 0 0 16px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
   ${typography.textStyles.header.h6}
 `;
 
@@ -84,9 +84,9 @@ const StyledExampleRow = styled.div`
 const StyledSample = styled.div`
   min-width: 0;
   padding: 10px 12px;
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base1.rest};
-  border: 1px solid ${({ theme }) => theme.color.stroke.neutral.subtle.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.neutral.base._1.rest};
+  border: 1px solid ${({ theme }) => theme.color.neutral.stroke.subtle.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
 `;
 
@@ -95,8 +95,8 @@ const StyledCode = styled.code`
   min-width: 0;
   padding: 10px 12px;
   overflow-wrap: anywhere;
-  color: ${({ theme }) => theme.color.text.neutral.text2.rest};
-  background: ${({ theme }) => theme.color.base.neutral.base3.rest};
+  color: ${({ theme }) => theme.color.neutral.text._2.rest};
+  background: ${({ theme }) => theme.color.neutral.base._3.rest};
   border-radius: ${({ theme }) => theme.radius.byBase['2'].medium};
   ${textStyles.monospace.mono3}
 `;
@@ -114,27 +114,21 @@ const StyledTextStylesExport = styled(StyledSample)`
 `;
 
 const StyledColorSemanticNested = styled(StyledSample)`
-  color: ${({ theme }) => theme.color.text.neutral.staticWhite['1']};
-  background: ${({ theme }) => theme.color.base.primary.base1.rest};
-  border-color: ${({ theme }) => theme.color.stroke.primary.stroke1.rest};
+  color: ${({ theme }) => theme.color.neutral.text.staticWhite._1};
+  background: ${({ theme }) => theme.color.primary.base._1.rest};
+  border-color: ${({ theme }) => theme.color.primary.stroke._1.rest};
 `;
 
 const StyledColorSemanticAlias = styled(StyledSample)`
-  color: ${({ theme }) => theme.color['Text/Neutral/Static White/1']};
-  background: ${({ theme }) => theme.color['Base/Status/Success/Base 1/Rest']};
-  border-color: ${({ theme }) => theme.color['Stroke/Status/Success/Stroke 1/Rest']};
+  color: ${({ theme }) => theme.color['Neutral/Text/Static White/1']};
+  background: ${({ theme }) => theme.color['Success/Base/1/Rest']};
+  border-color: ${({ theme }) => theme.color['Success/Stroke/1/Rest']};
 `;
 
 const StyledColorCssVars = styled(StyledSample)`
-  color: var(--admiral-color-text-neutral-static-white-1, ${({ theme }) => theme.color.text.neutral.staticWhite['1']});
-  background: var(
-    --admiral-color-base-status-error-base1-rest,
-    ${({ theme }) => theme.color.base.status.error.base1.rest}
-  );
-  border-color: var(
-    --admiral-color-stroke-status-error-stroke1-rest,
-    ${({ theme }) => theme.color.stroke.status.error.stroke1.rest}
-  );
+  color: var(--admiral-color-neutral-text-static-white-1, ${({ theme }) => theme.color.neutral.text.staticWhite._1});
+  background: var(--admiral-color-error-base-1-rest, ${({ theme }) => theme.color.error.base._1.rest});
+  border-color: var(--admiral-color-error-stroke-1-rest, ${({ theme }) => theme.color.error.stroke._1.rest});
 `;
 
 const StyledColorGlobal = styled(StyledSample)`
@@ -144,9 +138,9 @@ const StyledColorGlobal = styled(StyledSample)`
 `;
 
 const StyledColorSourceReference = styled(StyledSample)`
-  color: ${({ theme }) => theme.color.text.neutral.text1.rest};
-  background: ${({ theme }) => theme.color.base.primary.base3.rest};
-  border-color: ${({ theme }) => theme.color.stroke.primary.stroke2.rest};
+  color: ${({ theme }) => theme.color.neutral.text._1.rest};
+  background: ${({ theme }) => theme.color.primary.base._3.rest};
+  border-color: ${({ theme }) => theme.color.primary.stroke._2.rest};
 `;
 
 const StyledRadiusNested = styled(StyledSample)`
@@ -178,8 +172,7 @@ const StyledShadowCssVar = styled(StyledSample)`
 `;
 
 const StyledShadowGeometry = styled(StyledSample)`
-  box-shadow: ${({ theme }) =>
-    shadow.shadow08.map(({ x, y, blur, color }) => `${x} ${y} ${blur} ${theme.color.shadow[color]}`).join(', ')};
+  box-shadow: ${({ theme }) => theme.shadow.shadow08};
 `;
 
 const rows = {
@@ -204,17 +197,17 @@ const rows = {
     {
       Sample: StyledColorSemanticNested,
       text: 'semantic nested',
-      code: 'theme.color.base.primary.base1.rest',
+      code: 'theme.color.primary.base._1.rest',
     },
     {
       Sample: StyledColorSemanticAlias,
       text: 'semantic alias key',
-      code: "theme.color['Base/Status/Success/Base 1/Rest']",
+      code: "theme.color['Success/Base/1/Rest']",
     },
     {
       Sample: StyledColorCssVars,
       text: 'semantic CSS variables',
-      code: 'var(--admiral-color-base-status-error-base1-rest)',
+      code: 'var(--admiral-color-error-base-1-rest)',
     },
     {
       Sample: StyledColorGlobal,
@@ -223,8 +216,8 @@ const rows = {
     },
     {
       Sample: StyledColorSourceReference,
-      text: themeColors.base.primary.light.base1.rest,
-      code: 'themeColors.base.primary.light.base1.rest',
+      text: themeColors.primary.base._1.rest.light,
+      code: 'themeColors.primary.base._1.rest.light',
     },
   ],
   radius: [
@@ -268,7 +261,7 @@ const rows = {
     {
       Sample: StyledShadowGeometry,
       text: 'geometry + semantic shadow colors',
-      code: 'shadow.shadow08 + theme.color.shadow[color]',
+      code: 'theme.shadow.shadow08',
     },
   ],
 } as const;

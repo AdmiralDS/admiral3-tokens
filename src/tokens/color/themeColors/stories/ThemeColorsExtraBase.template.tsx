@@ -1,9 +1,9 @@
+import { themeColors } from '..';
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { extraBase } from '../base/extra';
 
 const extraBaseConfig = createThemeColorsSectionsConfig({
-  source: extraBase,
+  source: themeColors,
   sourceMode: 'lightDark',
   themeSection: 'base',
   tokenGroup: 'extra',

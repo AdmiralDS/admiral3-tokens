@@ -6,8 +6,8 @@ const StyledPage = styled.article`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 28px 30px 64px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
 
   @media (max-width: 720px) {
     padding: 24px 16px 48px;
@@ -39,7 +39,7 @@ const StyledSectionTitle = styled.h2`
 const StyledText = styled.p`
   max-width: 1100px;
   margin: 0;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Body/Body 1 Long']}
 
   & + & {

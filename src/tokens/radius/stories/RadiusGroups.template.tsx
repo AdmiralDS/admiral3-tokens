@@ -25,8 +25,8 @@ const StyledPage = styled.section`
   box-sizing: border-box;
   min-height: 100vh;
   padding: 24px 32px 64px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
 
   @media (max-width: 720px) {
     padding: 20px 16px 48px;
@@ -40,7 +40,7 @@ const StyledContent = styled.div`
 
 const StyledTitle = styled.h2`
   margin: 0 0 24px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Header/H5']}
 `;
 
@@ -54,7 +54,7 @@ const StyledControls = styled.fieldset`
 const StyledLegend = styled.legend`
   padding: 0;
   margin: 0 0 12px;
-  color: var(--admiral-color-text-neutral-text2-rest, ${({ theme }) => theme.color.text.neutral.text2.rest});
+  color: var(--admiral-color-neutral-text-2-rest, ${({ theme }) => theme.color.neutral.text._2.rest});
   ${typography['Subtitle/Subtitle 2']}
 `;
 
@@ -70,26 +70,21 @@ const StyledOption = styled.label`
   align-items: center;
   min-height: 36px;
   padding: 0 14px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base1-rest, ${({ theme }) => theme.color.base.neutral.base1.rest});
-  border: 1px solid
-    var(--admiral-color-stroke-neutral-stroke1-rest, ${({ theme }) => theme.color.stroke.neutral.stroke1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-1-rest, ${({ theme }) => theme.color.neutral.base._1.rest});
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest, ${({ theme }) => theme.color.neutral.stroke._1.rest});
   border-radius: ${({ theme }) => theme.radius.byBase['4'].medium};
   cursor: pointer;
   ${typography['Button/Button 2']}
 
   &:has(input:checked) {
-    color: var(--admiral-color-text-neutral-inverted-rest, ${({ theme }) => theme.color.text.neutral.inverted.rest});
-    background: var(--admiral-color-base-primary-base1-rest, ${({ theme }) => theme.color.base.primary.base1.rest});
-    border-color: var(
-      --admiral-color-stroke-primary-stroke1-rest,
-      ${({ theme }) => theme.color.stroke.primary.stroke1.rest}
-    );
+    color: var(--admiral-color-neutral-text-inverted-rest, ${({ theme }) => theme.color.neutral.text.inverted.rest});
+    background: var(--admiral-color-primary-base-1-rest, ${({ theme }) => theme.color.primary.base._1.rest});
+    border-color: var(--admiral-color-primary-stroke-1-rest, ${({ theme }) => theme.color.primary.stroke._1.rest});
   }
 
   &:has(input:focus-visible) {
-    outline: 2px solid
-      var(--admiral-color-stroke-primary-stroke1-rest, ${({ theme }) => theme.color.stroke.primary.stroke1.rest});
+    outline: 2px solid var(--admiral-color-primary-stroke-1-rest, ${({ theme }) => theme.color.primary.stroke._1.rest});
     outline-offset: 2px;
   }
 `;
@@ -117,21 +112,20 @@ const StyledRectangle = styled.article<{ $radius: string }>`
   min-width: 0;
   min-height: 156px;
   padding: 20px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
-  background: var(--admiral-color-base-neutral-base2-rest, ${({ theme }) => theme.color.base.neutral.base2.rest});
-  border: 1px solid
-    var(--admiral-color-stroke-neutral-stroke1-rest, ${({ theme }) => theme.color.stroke.neutral.stroke1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
+  background: var(--admiral-color-neutral-base-2-rest, ${({ theme }) => theme.color.neutral.base._2.rest});
+  border: 1px solid var(--admiral-color-neutral-stroke-1-rest, ${({ theme }) => theme.color.neutral.stroke._1.rest});
   border-radius: ${({ $radius }) => $radius};
 `;
 
 const StyledRectangleTitle = styled.h3`
   margin: 0 0 12px;
-  color: var(--admiral-color-text-neutral-text1-rest, ${({ theme }) => theme.color.text.neutral.text1.rest});
+  color: var(--admiral-color-neutral-text-1-rest, ${({ theme }) => theme.color.neutral.text._1.rest});
   ${typography['Subtitle/Subtitle 1']}
 `;
 
 const StyledValue = styled.div`
-  color: var(--admiral-color-text-neutral-text2-rest, ${({ theme }) => theme.color.text.neutral.text2.rest});
+  color: var(--admiral-color-neutral-text-2-rest, ${({ theme }) => theme.color.neutral.text._2.rest});
   ${typography['Body/Body 1 Long']}
 `;
 

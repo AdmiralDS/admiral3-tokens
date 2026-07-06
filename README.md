@@ -19,14 +19,14 @@ Font assets поставляются через dependencies `@admiral-ds/fonts`
 import { lightTheme, themes } from '@admiral-ds/admiral3-tokens';
 
 export function Demo() {
-  return <div style={{ color: lightTheme.color.text.neutral.text1.rest }}>Ready</div>;
+  return <div style={{ color: lightTheme.color.neutral.text._1.rest }}>Ready</div>;
 }
 ```
 
 Основной импорт `@admiral-ds/admiral3-tokens` отдаёт TypeScript/JavaScript API: объекты тем, агрегированные color/radius/shadow token maps, animation, breakpoints, zIndex, типографику, helpers и типы. CSS подключается через отдельные subpath.
-Вложенные color-палитры доступны через агрегаты `globalColors` и `themeColors`; отдельные shorthand-экспорты вроде `primaryBase` или `neutralText` не входят в root API.
+Вложенные color-палитры доступны через агрегаты `globalColors` и `themeColors`.
 Typography API включает основные текстовые роли и monospace-стили `Monospace/Mono 1`, `Monospace/Mono 2`, `Monospace/Mono 3` для Source Code Pro.
-Semantic theme colors доступны внутри theme objects в группах `color.base`, `color.text`, `color.stroke` и `color.shadow`.
+Semantic theme colors доступны внутри theme objects в группах `color.primary`, `color.neutral`, `color.success`, `color.warning`, `color.error`, `color.attention`, `color.blue`, `color.purple`, `color.magenta`, `color.teal`; внутри каждой группы есть `base`, `text` и `stroke`.
 
 ## Public API
 

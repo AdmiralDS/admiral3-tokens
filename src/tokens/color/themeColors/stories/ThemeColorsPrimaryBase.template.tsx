@@ -1,9 +1,9 @@
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { primaryBase } from '../base/primary';
+import { primary } from '../primary';
 
 const primaryBaseConfig = createThemeColorsSectionsConfig({
-  source: primaryBase,
+  source: primary,
   themeSection: 'base',
   tokenGroup: 'primary',
 });

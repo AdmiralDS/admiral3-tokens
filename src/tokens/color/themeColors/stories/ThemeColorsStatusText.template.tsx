@@ -1,9 +1,9 @@
+import { themeColors } from '..';
 import { createThemeColorsSectionsConfig } from './ThemeColorsSections.config';
 import { ThemeColorsSectionsTemplate } from './ThemeColorsSections.template';
-import { statusText } from '../text/status';
 
 const statusTextConfig = createThemeColorsSectionsConfig({
-  source: statusText,
+  source: themeColors,
   sourceMode: 'lightDark',
   themeSection: 'text',
   tokenGroup: 'status',

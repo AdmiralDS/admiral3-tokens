@@ -1,4 +1,4 @@
-import { themeColors } from '../color';
+import { themeColors, themeShadowColors } from '../color';
 import type { globalColors } from '../color';
 import {
   buildGlobalColors,
@@ -13,12 +13,8 @@ export const themeModes = ['light', 'dark', 'lightNeutral', 'darkNeutral'] as co
 
 export type ThemeMode = (typeof themeModes)[number];
 
-type ThemeSectionModeMap = {
-  neutral: ThemeMode;
-  primary: ThemeMode;
-  status: ThemeMode;
-  extra: ThemeMode;
-};
+type ThemeColorPaletteName = keyof typeof themeColors;
+type ThemeSectionModeMap = Record<ThemeColorPaletteName, ThemeMode>;
 
 type ThemeModeMap = {
   [K in ThemeMode]: {
@@ -34,20 +30,38 @@ const themeModeMap = {
     base: {
       neutral: 'light',
       primary: 'light',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     text: {
       neutral: 'light',
       primary: 'light',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     stroke: {
       neutral: 'light',
       primary: 'light',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     shadow: 'light',
   },
@@ -55,20 +69,38 @@ const themeModeMap = {
     base: {
       neutral: 'dark',
       primary: 'dark',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     text: {
       neutral: 'dark',
       primary: 'dark',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     stroke: {
       neutral: 'dark',
       primary: 'dark',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     shadow: 'dark',
   },
@@ -76,20 +108,38 @@ const themeModeMap = {
     base: {
       neutral: 'light',
       primary: 'lightNeutral',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     text: {
       neutral: 'lightNeutral',
       primary: 'lightNeutral',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     stroke: {
       neutral: 'lightNeutral',
       primary: 'lightNeutral',
-      status: 'light',
-      extra: 'light',
+      success: 'light',
+      warning: 'light',
+      error: 'light',
+      attention: 'light',
+      blue: 'light',
+      purple: 'light',
+      magenta: 'light',
+      teal: 'light',
     },
     shadow: 'lightNeutral',
   },
@@ -97,20 +147,38 @@ const themeModeMap = {
     base: {
       neutral: 'dark',
       primary: 'darkNeutral',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     text: {
       neutral: 'darkNeutral',
       primary: 'darkNeutral',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     stroke: {
       neutral: 'darkNeutral',
       primary: 'darkNeutral',
-      status: 'dark',
-      extra: 'dark',
+      success: 'dark',
+      warning: 'dark',
+      error: 'dark',
+      attention: 'dark',
+      blue: 'dark',
+      purple: 'dark',
+      magenta: 'dark',
+      teal: 'dark',
     },
     shadow: 'darkNeutral',
   },
@@ -127,7 +195,18 @@ type SelectThemeMode<T, M extends ThemeMode> = T extends TokenValue
         readonly [K in keyof T]: SelectThemeMode<T[K], M>;
       };
 
-type ThemeColorAlias = `${'Base' | 'Text' | 'Stroke'}/${string}`;
+type ThemeColorPaletteAlias =
+  | 'Primary'
+  | 'Neutral'
+  | 'Success'
+  | 'Warning'
+  | 'Error'
+  | 'Attention'
+  | 'Blue'
+  | 'Purple'
+  | 'Magenta'
+  | 'Teal';
+type ThemeColorAlias = `${ThemeColorPaletteAlias}/${'Base' | 'Text' | 'Stroke'}/${string}`;
 type ThemeShadowAlias = `Shadow ${string}`;
 type FlatThemeColorTokens = Record<ThemeColorAlias, string>;
 type FlatThemeShadowTokens = Record<ThemeShadowAlias, string>;
@@ -158,21 +237,9 @@ const selectThemeMode = <T, M extends ThemeMode>(value: T, mode: M): SelectTheme
   ) as SelectThemeMode<T, M>;
 };
 
-const buildThemeSectionReferences = <
-  TSection extends Record<string, unknown>,
-  TModeMap extends { readonly [K in keyof TSection]: ThemeMode },
->(
-  section: TSection,
-  map: TModeMap,
-) =>
-  Object.fromEntries(
-    Object.entries(section).map(([key, value]) => [key, selectThemeMode(value, map[key as keyof TSection])]),
-  ) as {
-    readonly [K in keyof TSection]: SelectThemeMode<TSection[K], TModeMap[K]>;
-  };
-
 const toThemeColorTokenNameSegment = (segment: string) =>
   segment
+    .replace(/^_(\d+)$/, '$1')
     .replace(/([a-z])([A-Z])/g, '$1 $2')
     .replace(/([A-Za-z])(\d+)/g, '$1 $2')
     .replace(/^./, (letter) => letter.toUpperCase());
@@ -218,8 +285,8 @@ const resolveGlobalColorReferences = <T extends TokenRecord | TokenValue>(value:
   ) as T;
 };
 
-const resolveThemeShadow = (color: keyof typeof themeColors.shadow, mode: ThemeMode, colors: typeof globalColors) =>
-  resolveGlobalColorValue(themeColors.shadow[color][mode], colors);
+const resolveThemeShadow = (color: keyof typeof themeShadowColors, mode: ThemeMode, colors: typeof globalColors) =>
+  resolveGlobalColorValue(themeShadowColors[color][mode], colors);
 
 const buildThemeShadow = (mode: ThemeMode, colors: typeof globalColors) =>
   Object.fromEntries(
@@ -239,12 +306,26 @@ const buildThemeShadowAliases = (value: Record<keyof typeof shadow, string>) =>
 export const buildThemeColorReferences = (mode: ThemeMode) => {
   const map = themeModeMap[mode];
 
-  return {
-    base: buildThemeSectionReferences(themeColors.base, map.base),
-    text: buildThemeSectionReferences(themeColors.text, map.text),
-    stroke: buildThemeSectionReferences(themeColors.stroke, map.stroke),
-    shadow: selectThemeMode(themeColors.shadow, map.shadow),
-  } as const;
+  return Object.fromEntries(
+    Object.entries(themeColors).map(([paletteName, palette]) => {
+      const typedPaletteName = paletteName as ThemeColorPaletteName;
+
+      return [
+        typedPaletteName,
+        {
+          base: selectThemeMode(palette.base, map.base[typedPaletteName]),
+          text: selectThemeMode(palette.text, map.text[typedPaletteName]),
+          stroke: selectThemeMode(palette.stroke, map.stroke[typedPaletteName]),
+        },
+      ];
+    }),
+  ) as {
+    readonly [K in ThemeColorPaletteName]: {
+      readonly base: SelectThemeMode<(typeof themeColors)[K]['base'], (typeof map)['base'][K]>;
+      readonly text: SelectThemeMode<(typeof themeColors)[K]['text'], (typeof map)['text'][K]>;
+      readonly stroke: SelectThemeMode<(typeof themeColors)[K]['stroke'], (typeof map)['stroke'][K]>;
+    };
+  };
 };
 
 export const buildTheme = (

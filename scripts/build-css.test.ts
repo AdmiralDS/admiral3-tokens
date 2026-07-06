@@ -18,7 +18,7 @@ import {
 describe('build-css helpers', () => {
   it('normalizes token path segments into CSS variable names', () => {
     expect(toKebab('lightNeutral')).toBe('light-neutral');
-    expect(toVarName(['color', 'text', 'neutral', 'text1', 'rest'])).toBe('--admiral-color-text-neutral-text1-rest');
+    expect(toVarName(['color', 'neutral', 'text', '1', 'rest'])).toBe('--admiral-color-neutral-text-1-rest');
   });
 
   it('flattens nested token objects into path/value pairs', () => {
@@ -136,7 +136,7 @@ describe('build-css output', () => {
     const files = buildCssFiles();
 
     expect(files['theme-light.css']).toContain(
-      '--admiral-color-text-primary-text1-rest: var(--admiral-color-global-primary-primary110, #0062FF);',
+      '--admiral-color-primary-text-1-rest: var(--admiral-color-global-primary-primary110, #0062FF);',
     );
     expect(files['theme-light.css']).not.toContain('primary.primary110');
   });
