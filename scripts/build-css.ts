@@ -251,19 +251,10 @@ export const buildTypographyVariables = (): VariableEntry[] => [
   ),
 ];
 
-type MotionEasingValue = readonly [number, number, number, number];
-
-const isMotionEasingValue = (value: unknown): value is MotionEasingValue =>
-  Array.isArray(value) && value.length === 4 && value.every((point) => typeof point === 'number');
-
 export const buildAnimationVariables = (): VariableEntry[] =>
   flatten(animation as unknown as TokenRecord).map(([path, value]) => {
     if (path.includes('duration') && typeof value === 'number') {
       return [toVarName(['animation', ...path]), `${value}ms`];
-    }
-
-    if (path.includes('easing') && isMotionEasingValue(value)) {
-      return [toVarName(['animation', ...path]), `cubic-bezier(${value.join(', ')})`];
     }
 
     return [toVarName(['animation', ...path]), value];

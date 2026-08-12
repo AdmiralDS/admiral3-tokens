@@ -16,14 +16,14 @@ export const animation = {
       long_4: 600,
     },
     easing: {
-      linear: [0, 0, 1, 1],
+      linear: 'cubic-bezier(0, 0, 1, 1)',
       decelerate: {
-        standard: [0, 0, 0.2, 1],
-        emphasized: [0.05, 0.6, 0.2, 1],
+        standard: 'cubic-bezier(0, 0, 0.2, 1)',
+        emphasized: 'cubic-bezier(0.05, 0.6, 0.2, 1)',
       },
       accelerate: {
-        standard: [0.4, 0, 1, 1],
-        emphasized: [0.3, 0, 0.8, 0.15],
+        standard: 'cubic-bezier(0.4, 0, 1, 1)',
+        emphasized: 'cubic-bezier(0.3, 0, 0.8, 0.15)',
       },
     },
   },
@@ -32,4 +32,4 @@ export const animation = {
 export type Animation = typeof animation;
 export type MotionDuration = typeof animation.motion.duration;
 export type MotionEasing = typeof animation.motion.easing;
-export type MotionEasingValue = readonly [number, number, number, number];
+export type MotionEasingValue = `cubic-bezier(${number}, ${number}, ${number}, ${number})`;

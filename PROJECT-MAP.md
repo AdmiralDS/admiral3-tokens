@@ -280,7 +280,8 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 ## Tokens: animation
 
 - `src/tokens/animation/index.ts` - public animation barrel. Экспортирует animation token map и типы.
-- `src/tokens/animation/animation.ts` - source of truth для motion duration и easing tokens.
+- `src/tokens/animation/animation.ts` - source of truth для motion duration и готовых CSS `cubic-bezier(...)` easing tokens.
+- `src/tokens/animation/animation.test.ts` - проверка публичного формата easing tokens.
 - `src/tokens/animation/stories/Animation.stories.tsx` - Storybook CSF файл для animation tokens.
 - `src/tokens/animation/stories/Animation.template.tsx` - пример/template визуализации duration/easing tables, кривых Безье и пяти интерактивных easing-примеров; подробно не разбирается.
 
