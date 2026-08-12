@@ -142,7 +142,7 @@ import '@admiral-ds/admiral3-tokens/css/z-index';
 ```ts
 import { animation, breakpoints, zIndex } from '@admiral-ds/admiral3-tokens';
 
-const drawerTransition = `${animation.motion.duration.medium_2}ms cubic-bezier(${animation.motion.easing.decelerate.standard.join(', ')})`;
+const drawerTransition = `${animation.motion.duration.medium_2}ms ${animation.motion.easing.decelerate.standard}`;
 const desktopMinWidth = breakpoints.lg;
 const modalLayer = zIndex.modal;
 ```

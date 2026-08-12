@@ -436,7 +436,8 @@ browser/runtime integration.
 1. Хранить duration, easing и semantic motion tokens в `src/tokens/animation`.
 2. Для CSS output использовать переменные вида `--admiral-animation-*`.
 3. Если animation tokens не зависят от темы, не добавлять их в theme objects без явной необходимости.
-4. Storybook/playground примеры easing должны показывать пять стандартных комбинаций с движением шарика слева направо и обратно в зоне 360x100px.
+4. Значения easing хранить как готовые CSS timing functions вида `cubic-bezier(...)`, чтобы их можно было использовать без дополнительного форматирования.
+5. Storybook/playground примеры easing должны показывать пять стандартных комбинаций с движением шарика слева направо и обратно в зоне 360x100px.
 
 `breakpoints`:
 

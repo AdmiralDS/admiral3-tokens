@@ -213,15 +213,13 @@ const StyledPreviewTrack = styled.div<{ $easing: string }>`
   }
 `;
 
-const formatEasingValue = (value: MotionEasingValue) => value.join(', ');
-
-const formatEasingCss = (value: MotionEasingValue) => `cubic-bezier(${formatEasingValue(value)})`;
+const getBezierPoints = (value: MotionEasingValue) => value.slice('cubic-bezier('.length, -1).split(', ').map(Number);
 
 const getCurvePoint = (x: number, y: number) => `${32 + x * 136},${168 - y * 136}`;
 
 const CurveDiagram = ({ value }: { value: MotionEasingValue }) => {
   const theme = useTheme() as BuiltTheme;
-  const [x1, y1, x2, y2] = value;
+  const [x1, y1, x2, y2] = getBezierPoints(value);
   const start = getCurvePoint(0, 0);
   const control1 = getCurvePoint(x1, y1);
   const control2 = getCurvePoint(x2, y2);
@@ -311,7 +309,7 @@ export const AnimationTemplate = () => (
             {easingRows.map((row) => (
               <tr key={row.token}>
                 <StyledCell>{row.token}</StyledCell>
-                <StyledCell>{formatEasingValue(row.value)}</StyledCell>
+                <StyledCell>{row.value}</StyledCell>
                 <StyledCell>{row.transitionType}</StyledCell>
               </tr>
             ))}
@@ -329,14 +327,10 @@ export const AnimationTemplate = () => (
               <StyledExampleLayout>
                 <StyledCurveBlock>
                   <CurveDiagram value={example.value} />
-                  <StyledValue>{formatEasingValue(example.value)}</StyledValue>
+                  <StyledValue>{example.value}</StyledValue>
                 </StyledCurveBlock>
                 <StyledPreview>
-                  <StyledPreviewTrack
-                    $easing={formatEasingCss(example.value)}
-                    aria-hidden="true"
-                    data-animation-preview-track
-                  />
+                  <StyledPreviewTrack $easing={example.value} aria-hidden="true" data-animation-preview-track />
                   <span>Пример анимации</span>
                 </StyledPreview>
               </StyledExampleLayout>
