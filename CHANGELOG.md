@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.5...v0.0.6) (2026-08-12)
+
+
+### Features
+
+* **animation:** export easing as cubic-bezier ([d6e05eb](https://github.com/AdmiralDS/admiral3-tokens/commit/d6e05eb8faecd4ef959ab6e2d939e342c5e64384))
+
 ### [0.0.5](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.4...v0.0.5) (2026-07-06)
 
 ### [0.0.4](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.3...v0.0.4) (2026-06-25)
