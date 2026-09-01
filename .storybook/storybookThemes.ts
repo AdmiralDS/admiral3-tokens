@@ -1,3 +1,4 @@
+import { cornerRadiusOptions, type CornerRadiusBase } from '../src/tokens/radius';
 import type { ThemeMode } from '../src/tokens/themes';
 
 export type StorybookSimpleTheme = 'light' | 'dark';
@@ -13,6 +14,10 @@ export const storybookAdmiralThemes: StorybookAdmiralTheme[] = [
 
 export const isStorybookAdmiralTheme = (theme: unknown): theme is StorybookAdmiralTheme => {
   return typeof theme === 'string' && storybookAdmiralThemes.includes(theme as StorybookAdmiralTheme);
+};
+
+export const isStorybookCornerRadius = (cornerRadius: unknown): cornerRadius is CornerRadiusBase => {
+  return typeof cornerRadius === 'string' && cornerRadiusOptions.includes(cornerRadius as CornerRadiusBase);
 };
 
 export const getPreferredSimpleTheme = (): StorybookSimpleTheme => {

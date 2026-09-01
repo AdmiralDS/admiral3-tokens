@@ -1,7 +1,7 @@
 export { globalColors } from './tokens/color/globalColors';
 export { animation } from './tokens/animation';
 export { breakpoints } from './tokens/breakpoints';
-export { radius } from './tokens/radius';
+export { cornerRadiusOptions, radius } from './tokens/radius';
 export { shadow } from './tokens/shadow';
 export { themeShadowColors } from './tokens/color/themeColors';
 export { textStyles, typographyPrimitives } from './tokens/typography';

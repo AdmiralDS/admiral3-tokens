@@ -31,7 +31,7 @@ export const Radius: Story = {
 };
 
 export const InteractiveRectangles: Story = {
-  name: 'Interactive rectangles',
+  name: 'Semantic groups',
   parameters: {
     docs: {
       source: {

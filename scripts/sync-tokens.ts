@@ -575,23 +575,30 @@ const defineStringAliases = <T extends object>(target: T, aliases: FlatRadiusTok
     ),
   ) as T & Readonly<FlatRadiusTokens>;
 
-const radiusTokens = {
-  default: '4',
-  byBase: {
+const radiusByBase = {
 ${byBaseEntries}
-  },
 } as const;
 
+export type CornerRadiusBase = keyof typeof radiusByBase;
+export type RadiusGroup = keyof (typeof radiusByBase)['4'];
+
 const radiusAliases = Object.fromEntries(
-  Object.entries(radiusTokens.byBase).flatMap(([base, groups]) =>
+  Object.entries(radiusByBase).flatMap(([base, groups]) =>
     Object.entries(groups).map(([group, value]) => [\`By Base/\${base}/\${toRadiusTokenNameSegment(group)}\`, value]),
   ),
 ) as FlatRadiusTokens;
 
-export const radius = defineStringAliases(radiusTokens, radiusAliases);
+export const buildRadius = <Base extends CornerRadiusBase>(base: Base) =>
+  defineStringAliases(
+    {
+      default: base,
+      ...radiusByBase[base],
+      byBase: radiusByBase,
+    },
+    radiusAliases,
+  );
 
-export type CornerRadiusBase = keyof typeof radius.byBase;
-export type RadiusGroup = keyof (typeof radius.byBase)['4'];
+export const radius = buildRadius('4');
 `,
   );
 };

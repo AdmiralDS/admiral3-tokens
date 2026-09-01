@@ -406,9 +406,10 @@ browser/runtime integration.
 6. Новый CSS subpath добавляется только если есть самостоятельный consumer use case для отдельного CSS-файла.
 7. Публичные CSS custom properties всегда используют префикс `--admiral-`.
 8. Переименование публичных token keys, CSS variables или subpaths считается breaking change.
-9. Root TypeScript/JavaScript API и CSS subpaths должны оставаться framework-agnostic. React-specific API размещается в
-   отдельном subpath, а `react` сохраняется optional peer dependency пакета.
-10. В framework-agnostic примерах VTB Group UI подключается через `@admiral-ds/fonts/VTBGroupUI.css`. Consumer с прямым
+9. Breaking change оформляется маркером `!` в Conventional Commit и footer `BREAKING CHANGE:` с краткой migration note.
+10. Root TypeScript/JavaScript API и CSS subpaths должны оставаться framework-agnostic. React-specific API размещается в
+    отдельном subpath, а `react` сохраняется optional peer dependency пакета.
+11. В framework-agnostic примерах VTB Group UI подключается через `@admiral-ds/fonts/VTBGroupUI.css`. Consumer с прямым
     импортом должен явно добавить `@admiral-ds/fonts` в свои dependencies и не полагаться на транзитивную установку.
 
 ### Правила для CSS tokens
@@ -426,6 +427,14 @@ browser/runtime integration.
 3. Если новый токен входит в `BuiltTheme`, нужно обновить типы и тесты `buildTheme`.
 4. Строковые aliases добавляются только если они нужны для совместимости с ожидаемым стилем потребления токенов.
 5. Изменения публичного поведения тем должны отражаться в Storybook `Themes`, README и, если поведение нужно проверить в браузере, в internal playground/e2e.
+6. Компоненты должны выбирать семантическую группу радиуса `small`, `medium` или `large`; конкретная база скруглений
+   задаётся через `buildTheme(..., { cornerRadius })`. Не привязывайте компонент напрямую к `radius.byBase`.
+7. Storybook corner-radius control должен обновлять и `ThemeProvider`, и семантические CSS variables
+   `--admiral-radius-small`, `--admiral-radius-medium`, `--admiral-radius-large`, чтобы оба способа потребления
+   проверялись на одной выбранной базе.
+8. Чистый CSS выбирает базу через generated selector `[data-admiral-corner-radius="..."]`. Компоненты используют
+   только `--admiral-radius-small`, `--admiral-radius-medium` или `--admiral-radius-large`; прямые ссылки на
+   `--admiral-radius-by-base-*` остаются внутренним механизмом выбора базы.
 
 ### Правила для typography tokens
 
