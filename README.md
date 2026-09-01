@@ -10,8 +10,9 @@
 npm install @admiral-ds/admiral3-tokens
 ```
 
-`react` является обязательной peer-зависимостью пакета. `styled-components` нужен только для отдельного subpath.
-Font assets поставляются через dependencies `@admiral-ds/fonts` и `@fontsource/source-code-pro`.
+Основной TypeScript/JavaScript API и CSS-токены не зависят от UI-фреймворка. `react` и `styled-components` объявлены
+как optional peer dependencies и нужны только для соответствующих интеграционных subpath. Font assets поставляются
+через dependencies `@admiral-ds/fonts` и `@fontsource/source-code-pro`.
 
 ## Использование
 
@@ -28,6 +29,58 @@ export function Demo() {
 Typography API включает основные текстовые роли и monospace-стили `Monospace/Mono 1`, `Monospace/Mono 2`, `Monospace/Mono 3` для Source Code Pro.
 Semantic theme colors доступны внутри theme objects в группах `color.primary`, `color.neutral`, `color.success`, `color.warning`, `color.error`, `color.attention`, `color.blue`, `color.purple`, `color.magenta`, `color.teal`; внутри каждой группы есть `base`, `text` и `stroke`.
 
+### Использование независимо от UI-фреймворка
+
+Подключите готовые CSS custom properties в entrypoint приложения:
+
+```ts
+// main.ts
+import '@admiral-ds/admiral3-tokens/css';
+```
+
+После этого токены доступны в стилях приложения:
+
+```css
+.card {
+  color: var(--admiral-color-neutral-text-1-rest);
+  background: var(--admiral-color-neutral-base-1-rest);
+  border-radius: var(--admiral-radius-by-base-4-medium);
+}
+```
+
+Root TypeScript/JavaScript API также не привязан к UI-фреймворку:
+
+```ts
+import { animation, lightTheme } from '@admiral-ds/admiral3-tokens';
+```
+
+React требуется только при импорте `@admiral-ds/admiral3-tokens/fonts`. В приложении без React этот subpath
+импортировать не нужно.
+
+Для подключения `VTB Group UI` без React-helper установите пакет шрифтов как прямую зависимость приложения:
+
+```shell
+npm install @admiral-ds/fonts
+```
+
+Затем импортируйте готовый CSS в entrypoint приложения:
+
+```ts
+// main.ts
+import '@admiral-ds/fonts/VTBGroupUI.css';
+```
+
+После импорта доступно семейство `VTB Group UI` с начертаниями Regular (`400`), Medium (`500`) и SemiBold (`550`):
+
+```css
+body {
+  font-family: 'VTB Group UI', sans-serif;
+}
+```
+
+`@admiral-ds/fonts` уже входит в dependencies пакета токенов, но приложение, которое импортирует его напрямую,
+должно объявить пакет своей прямой dependency и не полагаться на транзитивную установку.
+
 ## Public API
 
 ```text
@@ -40,6 +93,7 @@ Semantic theme colors доступны внутри theme objects в групп�
 ├─ "./fonts"
 │  import { FontsSourceCodePro, FontsVTBGroup }
 │  React-helper для подключения VTB Group UI и Source Code Pro fonts.
+│  Дополнительно требует: react.
 │
 ├─ "./styled-components"
 │  import '@admiral-ds/admiral3-tokens/styled-components'

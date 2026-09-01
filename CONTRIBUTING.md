@@ -406,6 +406,10 @@ browser/runtime integration.
 6. Новый CSS subpath добавляется только если есть самостоятельный consumer use case для отдельного CSS-файла.
 7. Публичные CSS custom properties всегда используют префикс `--admiral-`.
 8. Переименование публичных token keys, CSS variables или subpaths считается breaking change.
+9. Root TypeScript/JavaScript API и CSS subpaths должны оставаться framework-agnostic. React-specific API размещается в
+   отдельном subpath, а `react` сохраняется optional peer dependency пакета.
+10. В framework-agnostic примерах VTB Group UI подключается через `@admiral-ds/fonts/VTBGroupUI.css`. Consumer с прямым
+    импортом должен явно добавить `@admiral-ds/fonts` в свои dependencies и не полагаться на транзитивную установку.
 
 ### Правила для CSS tokens
 

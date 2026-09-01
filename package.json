@@ -85,6 +85,9 @@
     "styled-components": "^6.4.1"
   },
   "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
     "styled-components": {
       "optional": true
     }
