@@ -427,6 +427,14 @@ browser/runtime integration.
 3. Если новый токен входит в `BuiltTheme`, нужно обновить типы и тесты `buildTheme`.
 4. Строковые aliases добавляются только если они нужны для совместимости с ожидаемым стилем потребления токенов.
 5. Изменения публичного поведения тем должны отражаться в Storybook `Themes`, README и, если поведение нужно проверить в браузере, в internal playground/e2e.
+6. Компоненты должны выбирать семантическую группу радиуса `small`, `medium` или `large`; конкретная база скруглений
+   задаётся через `buildTheme(..., { cornerRadius })`. Не привязывайте компонент напрямую к `radius.byBase`.
+7. Storybook corner-radius control должен обновлять и `ThemeProvider`, и семантические CSS variables
+   `--admiral-radius-small`, `--admiral-radius-medium`, `--admiral-radius-large`, чтобы оба способа потребления
+   проверялись на одной выбранной базе.
+8. Чистый CSS выбирает базу через generated selector `[data-admiral-corner-radius="..."]`. Компоненты используют
+   только `--admiral-radius-small`, `--admiral-radius-medium` или `--admiral-radius-large`; прямые ссылки на
+   `--admiral-radius-by-base-*` остаются внутренним механизмом выбора базы.
 
 ### Правила для typography tokens
 

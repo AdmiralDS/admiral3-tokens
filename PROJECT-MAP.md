@@ -146,8 +146,8 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 - `.storybook/main.ts` - основная конфигурация Storybook. Ищет `src/**/*.stories.*`, подключает docs/a11y addons, React Vite framework, react-docgen TypeScript и Vite aliases для root и fonts entrypoints.
 - `.storybook/manager.ts` - manager-side настройки Storybook UI. Синхронизирует внешний manager theme с выбранной Admiral theme через простой `light`/`dark` shell.
 - `.storybook/preview.css` - глобальные стили preview iframe: базовый фон, отступы, theme classes и визуальная оболочка stories/docs.
-- `.storybook/preview.tsx` - preview config. Добавляет decorators, `ThemeProvider`, `FontsVTBGroup`, `FontsSourceCodePro`, переключатель темы, a11y strict mode, fullscreen layout, docs container и порядок верхнеуровневых разделов sidebar.
-- `.storybook/storybookThemes.ts` - общий helper для Storybook theme toolbar: валидирует 4 Admiral theme modes и мапит `lightNeutral`/`darkNeutral` на простую внешнюю оболочку `light`/`dark`.
+- `.storybook/preview.tsx` - preview config. Добавляет decorators, `ThemeProvider`, `FontsVTBGroup`, `FontsSourceCodePro`, переключатели темы и corner-radius base, a11y strict mode, fullscreen layout, docs container и порядок верхнеуровневых разделов sidebar.
+- `.storybook/storybookThemes.ts` - общий helper для Storybook toolbar: валидирует 4 Admiral theme modes и corner-radius base, а также мапит `lightNeutral`/`darkNeutral` на простую внешнюю оболочку `light`/`dark`.
 
 ## Playground
 
@@ -303,7 +303,7 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 - `src/tokens/radius/stories/Radius.args.ts` - данные/args для Storybook radius.
 - `src/tokens/radius/stories/Radius.stories.tsx` - Storybook CSF файл для radius.
 - `src/tokens/radius/stories/Radius.template.tsx` - пример/template визуализации radius rules; подробно не разбирается.
-- `src/tokens/radius/stories/RadiusGroups.template.tsx` - отдельный интерактивный пример групп скруглений small/medium/large.
+- `src/tokens/radius/stories/RadiusGroups.template.tsx` - инструкция и runtime-примеры для styled-components и чистого CSS: показывает выбор базы, значения small/medium/large и реакцию компонентов на глобальный Storybook corner-radius control.
 
 ## Tokens: shadow
 

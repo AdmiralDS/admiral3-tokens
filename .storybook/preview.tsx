@@ -2,31 +2,43 @@ import type { ComponentType } from 'react';
 import { useEffect, useState } from 'react';
 
 import type { Preview } from '@storybook/react-vite';
-import { ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import { DocsThemeContainer } from './DocsThemeContainer';
 import {
   getPreferredSimpleTheme,
   isStorybookAdmiralTheme,
+  isStorybookCornerRadius,
   resolveAdmiralTheme,
   resolveStorybookShellTheme,
   type StorybookAdmiralTheme,
 } from './storybookThemes';
 import { FontsSourceCodePro, FontsVTBGroup } from '../src/fonts';
-import { themes } from '../src/tokens/themes';
+import { cornerRadiusOptions, type CornerRadiusBase } from '../src/tokens/radius';
+import { buildTheme, type BuiltTheme } from '../src/tokens/themes';
 import './preview.css';
+
+const StorybookRadiusVariables = createGlobalStyle<{ $radius: BuiltTheme['radius'] }>`
+  body {
+    --admiral-radius-small: ${({ $radius }) => $radius.small};
+    --admiral-radius-medium: ${({ $radius }) => $radius.medium};
+    --admiral-radius-large: ${({ $radius }) => $radius.large};
+  }
+`;
 
 const PreviewThemeShell = ({
   Story,
+  selectedCornerRadius,
   selectedTheme,
 }: {
   Story: ComponentType;
+  selectedCornerRadius: CornerRadiusBase;
   selectedTheme: StorybookAdmiralTheme;
 }) => {
   const [preferredTheme, setPreferredTheme] = useState(getPreferredSimpleTheme);
   const theme = resolveAdmiralTheme(selectedTheme, preferredTheme);
   const shellTheme = resolveStorybookShellTheme(selectedTheme, preferredTheme);
-  const admiralTheme = themes[theme];
+  const admiralTheme = buildTheme(theme, { cornerRadius: selectedCornerRadius });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -44,8 +56,17 @@ const PreviewThemeShell = ({
     document.body.dataset.admiralTheme = shellTheme;
   }, [shellTheme, theme]);
 
+  useEffect(() => {
+    document.body.dataset.admiralCornerRadius = selectedCornerRadius;
+
+    return () => {
+      delete document.body.dataset.admiralCornerRadius;
+    };
+  }, [selectedCornerRadius]);
+
   return (
     <ThemeProvider theme={admiralTheme}>
+      <StorybookRadiusVariables $radius={admiralTheme.radius} />
       <FontsVTBGroup />
       <FontsSourceCodePro />
       <Story />
@@ -53,19 +74,35 @@ const PreviewThemeShell = ({
   );
 };
 
-const PreviewThemeDecorator = (Story: ComponentType, context: { globals: { theme?: string } }) => {
+const PreviewThemeDecorator = (
+  Story: ComponentType,
+  context: { globals: { cornerRadius?: string; theme?: string } },
+) => {
   const selectedTheme = isStorybookAdmiralTheme(context.globals.theme) ? context.globals.theme : 'system';
+  const selectedCornerRadius = isStorybookCornerRadius(context.globals.cornerRadius)
+    ? context.globals.cornerRadius
+    : '4';
 
-  return <PreviewThemeShell Story={Story} selectedTheme={selectedTheme} />;
+  return <PreviewThemeShell Story={Story} selectedCornerRadius={selectedCornerRadius} selectedTheme={selectedTheme} />;
 };
 
 const preview: Preview = {
   tags: ['autodocs'],
   decorators: [PreviewThemeDecorator],
   initialGlobals: {
+    cornerRadius: '4',
     theme: 'system',
   },
   globalTypes: {
+    cornerRadius: {
+      description: 'Corner radius base',
+      toolbar: {
+        title: 'Corner radius',
+        icon: 'circlehollow',
+        items: cornerRadiusOptions.map((value) => ({ value, title: `Radius ${value}` })),
+        dynamicTitle: true,
+      },
+    },
     theme: {
       description: 'Preview theme',
       toolbar: {

@@ -246,6 +246,23 @@ export function App() {
 }
 ```
 
+Базу скруглений можно выбрать при сборке темы. Компоненты используют только семантические группы
+`theme.radius.small`, `theme.radius.medium` и `theme.radius.large`, а конкретные значения определяются выбранной базой:
+
+```tsx
+import { buildTheme } from '@admiral-ds/admiral3-tokens';
+
+const theme = buildTheme('light', { cornerRadius: '8' });
+
+// theme.radius.small === '4px'
+// theme.radius.medium === '8px'
+// theme.radius.large === '16px'
+```
+
+Доступные базы экспортируются как `cornerRadiusOptions`. Готовые темы используют базу `4`.
+В Storybook база переключается глобальным control `Corner radius`: он пересобирает тему и позволяет проверить
+компоненты, использующие `theme.radius.small`, `theme.radius.medium` или `theme.radius.large`.
+
 Тему можно задавать локально для части интерфейса через вложенный `ThemeProvider`:
 
 ```tsx
