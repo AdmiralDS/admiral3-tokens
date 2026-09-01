@@ -203,12 +203,6 @@ import '@admiral-ds/admiral3-tokens/css/z-index';
 `--admiral-radius-by-base-8-medium`, поэтому итоговым значением будет `8px`. Атрибут можно поставить на `html` для
 всего приложения или на отдельный контейнер для локальной области. Без атрибута используется база `4`.
 
-### Breaking change: удаление `--admiral-radius-default`
-
-CSS variable `--admiral-radius-default` удалена из generated CSS. Для радиуса компонента используйте семантическую
-переменную `--admiral-radius-small`, `--admiral-radius-medium` или `--admiral-radius-large`. Выбранная база задаётся
-атрибутом `data-admiral-corner-radius`; в TypeScript theme object её значение доступно как `theme.radius.default`.
-
 Статические токены можно использовать напрямую из TypeScript API:
 
 ```ts
