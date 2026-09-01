@@ -62,8 +62,15 @@ test.describe('Token playground integration checks', () => {
     const lightPrimaryBackground = await readStyle(primaryButton, 'background-color');
 
     await expect(demo).toHaveAttribute('data-admiral-theme', 'light');
-    await expect(card).toHaveCSS('border-radius', '12px');
+    await expect(demo).toHaveAttribute('data-admiral-corner-radius', '4');
+    await expect(card).toHaveCSS('border-radius', '8px');
     await expect(primaryButton).toHaveCSS('border-radius', '4px');
+
+    await page.getByLabel('Corner radius').selectOption('8');
+
+    await expect(demo).toHaveAttribute('data-admiral-corner-radius', '8');
+    await expect(card).toHaveCSS('border-radius', '16px');
+    await expect(primaryButton).toHaveCSS('border-radius', '8px');
 
     await page.getByRole('button', { name: 'dark-neutral' }).click();
 

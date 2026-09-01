@@ -181,15 +181,33 @@ import '@admiral-ds/admiral3-tokens/css/z-index';
 - `css/themes` - все темы с селекторами `:root` и `[data-admiral-theme="..."]`.
 - `css/typography` - типографика.
 - `css/theme-light`, `css/theme-dark`, `css/theme-light-neutral`, `css/theme-dark-neutral` - отдельные темы.
-- `css/radius` - радиусы.
+- `css/radius` - радиусы и selectors для выбора corner-radius base через `data-admiral-corner-radius`.
 - `css/shadow` - тени.
 - `css/z-index` - слои z-index.
 
 Для переключения темы используйте атрибут:
 
 ```html
-<html data-admiral-theme="dark"></html>
+<html data-admiral-theme="dark" data-admiral-corner-radius="8"></html>
 ```
+
+Компонент при этом использует только семантическую CSS variable:
+
+```css
+.card {
+  border-radius: var(--admiral-radius-medium);
+}
+```
+
+Сгенерированный selector `[data-admiral-corner-radius="8"]` направит её на
+`--admiral-radius-by-base-8-medium`, поэтому итоговым значением будет `8px`. Атрибут можно поставить на `html` для
+всего приложения или на отдельный контейнер для локальной области. Без атрибута используется база `4`.
+
+### Breaking change: удаление `--admiral-radius-default`
+
+CSS variable `--admiral-radius-default` удалена из generated CSS. Для радиуса компонента используйте семантическую
+переменную `--admiral-radius-small`, `--admiral-radius-medium` или `--admiral-radius-large`. Выбранная база задаётся
+атрибутом `data-admiral-corner-radius`; в TypeScript theme object её значение доступно как `theme.radius.default`.
 
 Статические токены можно использовать напрямую из TypeScript API:
 
@@ -266,6 +284,7 @@ import {
 const primary = generateAdmiralPalette('#8B3DFF', 'primary');
 
 const theme = buildTheme('light', {
+  cornerRadius: '8',
   globalColors: {
     primary,
   },

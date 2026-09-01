@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { cornerRadiusOptions, type CornerRadiusBase } from '@admiral-ds/admiral3-tokens';
+
 import { FontsVTBGroup } from '@admiral-ds/admiral3-tokens/fonts';
 import '@admiral-ds/admiral3-tokens/css';
 
@@ -8,10 +10,11 @@ const themeOptions = ['light', 'dark', 'light-neutral', 'dark-neutral'] as const
 type ThemeOption = (typeof themeOptions)[number];
 
 export const TokenCssExample = () => {
+  const [cornerRadius, setCornerRadius] = useState<CornerRadiusBase>('4');
   const [theme, setTheme] = useState<ThemeOption>('light');
 
   return (
-    <section className="token-demo" data-admiral-theme={theme}>
+    <section className="token-demo" data-admiral-corner-radius={cornerRadius} data-admiral-theme={theme}>
       <FontsVTBGroup />
       <header className="token-demo__toolbar">
         {themeOptions.map((item) => (
@@ -25,6 +28,21 @@ export const TokenCssExample = () => {
             {item}
           </button>
         ))}
+        <label className="token-demo__radius-control">
+          Corner radius
+          <select
+            aria-label="Corner radius"
+            className="token-demo__radius-select"
+            onChange={(event) => setCornerRadius(event.target.value as CornerRadiusBase)}
+            value={cornerRadius}
+          >
+            {cornerRadiusOptions.map((base) => (
+              <option key={base} value={base}>
+                {base}
+              </option>
+            ))}
+          </select>
+        </label>
       </header>
 
       <div className="token-demo__surface">

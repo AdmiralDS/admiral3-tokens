@@ -6,7 +6,8 @@ import {
   type GlobalColorOverrides,
   type TokenValue,
 } from '../color/resolveGlobalColorReference';
-import { radius } from '../radius';
+import { radius, type CornerRadiusBase } from '../radius';
+import { buildRadius } from '../radius/radius';
 import { shadow } from '../shadow';
 
 export const themeModes = ['light', 'dark', 'lightNeutral', 'darkNeutral'] as const;
@@ -214,9 +215,10 @@ type ThemeColor = ReturnType<typeof buildThemeColorReferences> & Readonly<FlatTh
 type ThemeShadow = {
   [K in keyof typeof shadow]: string;
 } & Readonly<FlatThemeShadowTokens>;
-type ThemeRadius = typeof radius;
+type ThemeRadius = ReturnType<typeof buildRadius>;
 
 export type BuildThemeOptions = {
+  readonly cornerRadius?: CornerRadiusBase;
   readonly globalColors?: GlobalColorOverrides;
 };
 
@@ -347,7 +349,10 @@ export const buildTheme = (
       ...color,
       ...colorAliases,
     } as ThemeColor,
-    radius,
+    radius:
+      options.cornerRadius === undefined || options.cornerRadius === radius.default
+        ? radius
+        : buildRadius(options.cornerRadius),
     shadow: defineStringAliases(themeShadow, buildThemeShadowAliases(themeShadow)),
   };
 };

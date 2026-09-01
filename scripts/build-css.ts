@@ -25,6 +25,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   animation,
   breakpoints,
+  cornerRadiusOptions,
   globalColors,
   radius,
   shadow,
@@ -57,6 +58,7 @@ type TokenRecord = {
 };
 type VariableEntry = readonly [name: string, value: TokenValue];
 type ThemeMode = (typeof themeModes)[number];
+type CornerRadiusBase = (typeof cornerRadiusOptions)[number];
 type CssFiles = Record<string, string>;
 type ThemeVariablesByMode = Record<ThemeMode, VariableEntry[]>;
 type GeneratedCssParts = {
@@ -303,6 +305,35 @@ export const themeFileName = (mode: ThemeMode) => toKebab(mode);
 export const themeSelector = (mode: ThemeMode) => `[data-admiral-theme="${themeFileName(mode)}"]`;
 
 /**
+ * Builds the public selector used to choose a corner-radius base in CSS.
+ */
+export const cornerRadiusSelector = (base: CornerRadiusBase) => `[data-admiral-corner-radius="${base}"]`;
+
+/**
+ * Points semantic radius variables to one concrete base without duplicating
+ * token values in generated CSS.
+ */
+export const buildSemanticRadiusVariables = (base: CornerRadiusBase): VariableEntry[] =>
+  Object.entries(radius.byBase[base]).map(([group, value]) => [
+    toVarName(['radius', group]),
+    `var(${toVarName(['radius-by-base', base, group])}, ${value})`,
+  ]);
+
+/**
+ * Builds radius primitives and ready-to-use selectors for every supported base.
+ * Base 4 remains the :root default; data-admiral-corner-radius can override it
+ * globally or for a nested subtree.
+ */
+const buildRadiusCss = () =>
+  cssFile(
+    [
+      renderBlock(':root', buildFlatVariables('radius-by-base', radius.byBase as TokenRecord)),
+      renderBlock(':root', buildSemanticRadiusVariables(radius.default)),
+      ...cornerRadiusOptions.map((base) => renderBlock(cornerRadiusSelector(base), buildSemanticRadiusVariables(base))),
+    ].join('\n'),
+  );
+
+/**
  * Builds `themes.css`.
  *
  * Light is emitted on both `:root` and `[data-admiral-theme="light"]` so the
@@ -389,7 +420,7 @@ const buildGeneratedCssParts = (): GeneratedCssParts => {
   );
   const animationCss = cssFile(renderBlock(':root', buildAnimationVariables()));
   const breakpointsCss = cssFile(renderBlock(':root', buildFlatVariables('breakpoints', breakpoints as TokenRecord)));
-  const radiusCss = cssFile(renderBlock(':root', buildFlatVariables('radius', radius as TokenRecord)));
+  const radiusCss = buildRadiusCss();
   const typographyCss = cssFile(renderBlock(':root', buildTypographyVariables()));
   const shadowCss = cssFile(renderBlock(':root', buildShadowVariables({ includeFallback: true })));
   const zIndexCss = cssFile(renderBlock(':root', buildFlatVariables('z-index', zIndex as TokenRecord)));

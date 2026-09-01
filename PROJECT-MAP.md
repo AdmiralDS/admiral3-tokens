@@ -193,7 +193,7 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 
 ## Source root
 
-- `src/css-data.ts` - внутренний агрегатор данных для `scripts/build-css.ts`. Экспортирует global colors, animation, breakpoints, radius, shadow, typography primitives, text styles, zIndex и theme color references без публикации отдельного subpath.
+- `src/css-data.ts` - внутренний агрегатор данных для `scripts/build-css.ts`. Экспортирует global colors, animation, breakpoints, radius вместе с вариантами corner-radius base, shadow, typography primitives, text styles, zIndex и theme color references без публикации отдельного subpath.
 - `src/index.ts` - root public API. Реэкспортирует themes, build helpers, агрегированные color/radius/shadow token maps, animation, breakpoints, zIndex, typography API и публичные типы пакета; внутренние color shorthand maps не выводятся отдельными root-экспортами.
 - `src/styled-components.ts` - public `./styled-components` subpath. Расширяет `styled-components` `DefaultTheme` типом `BuiltTheme`.
 - `src/vite-env.d.ts` - Vite ambient declarations для TypeScript.
@@ -298,7 +298,8 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 ## Tokens: radius
 
 - `src/tokens/radius/index.ts` - public radius barrel. Экспортирует radius token map и типы.
-- `src/tokens/radius/radius.ts` - source of truth для radius tokens и строковых алиасов.
+- `src/tokens/radius/radius.ts` - source of truth для radius tokens, строковых алиасов и сборки семантических групп
+  `small`/`medium`/`large` из выбранной corner-radius base.
 - `src/tokens/radius/stories/Radius.args.ts` - данные/args для Storybook radius.
 - `src/tokens/radius/stories/Radius.stories.tsx` - Storybook CSF файл для radius.
 - `src/tokens/radius/stories/Radius.template.tsx` - пример/template визуализации radius rules; подробно не разбирается.
@@ -322,7 +323,8 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 ## Tokens: themes
 
 - `src/tokens/themes/buildTheme.test.ts` - unit tests для `buildTheme`, `buildThemes`, theme modes, aliases, overrides и resolved values.
-- `src/tokens/themes/buildTheme.ts` - core theme builder. Собирает theme objects из semantic color references, global color overrides, radius и shadows; добавляет строковые aliases.
+- `src/tokens/themes/buildTheme.ts` - core theme builder. Собирает theme objects из semantic color references, global
+  color overrides, настраиваемой `cornerRadius` base и shadows; добавляет строковые aliases.
 - `src/tokens/themes/dark.ts` - готовый `darkTheme`, построенный через `buildTheme('dark')`.
 - `src/tokens/themes/darkNeutral.ts` - готовый `darkNeutralTheme`, построенный через `buildTheme('darkNeutral')`.
 - `src/tokens/themes/index.ts` - public themes barrel. Экспортирует готовые темы, builders, modes и public theme types.
@@ -360,7 +362,7 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 - `@admiral-ds/admiral3-tokens/css/global-colors` - generated global colors CSS.
 - `@admiral-ds/admiral3-tokens/css/themes` - generated combined theme CSS.
 - `@admiral-ds/admiral3-tokens/css/typography` - generated typography CSS.
-- `@admiral-ds/admiral3-tokens/css/radius` - generated radius CSS.
+- `@admiral-ds/admiral3-tokens/css/radius` - generated radius CSS с дефолтной базой `4` и selectors `[data-admiral-corner-radius="..."]` для переключения семантических radius variables; legacy variable `--admiral-radius-default` удалена из публичного CSS-контракта.
 - `@admiral-ds/admiral3-tokens/css/shadow` - generated shadow CSS.
 - `@admiral-ds/admiral3-tokens/css/theme-light` - generated standalone light theme CSS.
 - `@admiral-ds/admiral3-tokens/css/theme-dark` - generated standalone dark theme CSS.

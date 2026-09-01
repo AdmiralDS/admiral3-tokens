@@ -4,9 +4,11 @@ import {
   buildCssFiles,
   buildAnimationVariables,
   buildFlatVariables,
+  buildSemanticRadiusVariables,
   buildShadowVariables,
   buildTypographyVariables,
   flatten,
+  cornerRadiusSelector,
   resolveGlobalColorReference,
   resolveTypographyPrimitiveReference,
   themeFileName,
@@ -60,6 +62,15 @@ describe('build-css helpers', () => {
     expect(themeFileName('darkNeutral')).toBe('dark-neutral');
     expect(themeSelector('darkNeutral')).toBe('[data-admiral-theme="dark-neutral"]');
   });
+
+  it('builds corner radius selectors and semantic variable references', () => {
+    expect(cornerRadiusSelector('8')).toBe('[data-admiral-corner-radius="8"]');
+    expect(buildSemanticRadiusVariables('8')).toEqual([
+      ['--admiral-radius-small', 'var(--admiral-radius-by-base-8-small, 4px)'],
+      ['--admiral-radius-medium', 'var(--admiral-radius-by-base-8-medium, 8px)'],
+      ['--admiral-radius-large', 'var(--admiral-radius-by-base-8-large, 16px)'],
+    ]);
+  });
 });
 
 describe('build-css output', () => {
@@ -95,6 +106,18 @@ describe('build-css output', () => {
     expect(files['z-index.css']).toContain('--admiral-z-index-modal: 1400;');
     expect(files['index.css']).toContain('--admiral-animation-motion-easing-linear: cubic-bezier(0, 0, 1, 1);');
     expect(files['index.css']).toContain('--admiral-z-index-tooltip: 1600;');
+  });
+
+  it('emits semantic radius groups and selectors for every corner radius base', () => {
+    const files = buildCssFiles();
+
+    expect(files['radius.css']).toContain('--admiral-radius-small: var(--admiral-radius-by-base-4-small, 4px);');
+    expect(files['radius.css']).toContain('--admiral-radius-medium: var(--admiral-radius-by-base-4-medium, 4px);');
+    expect(files['radius.css']).toContain('--admiral-radius-large: var(--admiral-radius-by-base-4-large, 8px);');
+    expect(files['radius.css']).toContain('--admiral-radius-by-base-8-large: 16px;');
+    expect(files['radius.css']).toContain('[data-admiral-corner-radius="0"]');
+    expect(files['radius.css']).toContain('[data-admiral-corner-radius="8"]');
+    expect(files['index.css']).toContain('[data-admiral-corner-radius="8"]');
   });
 
   it('emits typography variables for primitives and text styles', () => {

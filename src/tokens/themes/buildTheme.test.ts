@@ -8,6 +8,17 @@ describe('buildTheme', () => {
   it('includes shared radius tokens in every theme object', () => {
     expect(lightTheme.radius).toBe(radius);
     expect(darkTheme.radius).toBe(radius);
+    expect(lightTheme.radius.medium).toBe('4px');
+  });
+
+  it('resolves semantic radius groups from the selected corner radius base', () => {
+    const theme = buildTheme('light', { cornerRadius: '8' });
+
+    expect(theme.radius.default).toBe('8');
+    expect(theme.radius.small).toBe('4px');
+    expect(theme.radius.medium).toBe('8px');
+    expect(theme.radius.large).toBe('16px');
+    expect(theme.radius.byBase).toBe(radius.byBase);
   });
 
   it('builds ready-to-use theme-dependent box-shadow strings', () => {
@@ -56,6 +67,15 @@ describe('buildTheme', () => {
     expect(themes.dark.color.primary.base._1.rest).toBe(primary.primary100);
     expect(themes.lightNeutral.color.primary.base._1.rest).toBe('#2D2E31');
     expect(themes.darkNeutral.color.primary.base._1.rest).toBe('#EBEBEC');
+  });
+
+  it('builds all theme modes with the same corner radius base', () => {
+    const themes = buildThemes({ cornerRadius: '6' });
+
+    expect(themes.light.radius.medium).toBe('6px');
+    expect(themes.dark.radius.medium).toBe('6px');
+    expect(themes.lightNeutral.radius.large).toBe('12px');
+    expect(themes.darkNeutral.radius.large).toBe('12px');
   });
 
   it('uses several global palette overrides at once', () => {
