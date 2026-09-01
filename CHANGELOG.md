@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.6...v0.1.0) (2026-09-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **radius:** remove the generated --admiral-radius-default CSS variable. Use --admiral-radius-small, --admiral-radius-medium, or --admiral-radius-large and select the base with data-admiral-corner-radius.
+
+### Features
+
+* **radius:** add semantic radius tokens ([8ced3a7](https://github.com/AdmiralDS/admiral3-tokens/commit/8ced3a710ebee3d2819d6d66640752c2d75c0da6))
+* **storybook:** add semantic radius demo ([7c07c81](https://github.com/AdmiralDS/admiral3-tokens/commit/7c07c8135aade1a6da26b7f1c16d277b1aaefdd9))
+
 ### [0.0.6](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.5...v0.0.6) (2026-08-12)
 
 
