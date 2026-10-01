@@ -309,6 +309,7 @@ describe('Pixso local variables source', () => {
       expect(`${sourceTokens['--Small']}px`).toBe(group.small);
       expect(`${sourceTokens['--Medium']}px`).toBe(group.medium);
       expect(`${sourceTokens['--Large']}px`).toBe(group.large);
+      expect(`${sourceTokens['--Round']}px`).toBe(group.round);
     });
   });
 

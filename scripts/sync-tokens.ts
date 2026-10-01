@@ -541,6 +541,7 @@ const buildRadiusMap = async () => {
       small: `${sourceTokens['--Small']}px`,
       medium: `${sourceTokens['--Medium']}px`,
       large: `${sourceTokens['--Large']}px`,
+      round: `${sourceTokens['--Round']}px`,
     };
   });
 
@@ -549,7 +550,7 @@ const buildRadiusMap = async () => {
     .map(([base, group]) => {
       const radiusGroup = group as GeneratedObject;
 
-      return `    '${base}': { small: '${radiusGroup.small}', medium: '${radiusGroup.medium}', large: '${radiusGroup.large}' },`;
+      return `    '${base}': { small: '${radiusGroup.small}', medium: '${radiusGroup.medium}', large: '${radiusGroup.large}', round: '${radiusGroup.round}' },`;
     })
     .join('\n');
 

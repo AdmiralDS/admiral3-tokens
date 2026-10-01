@@ -23,6 +23,7 @@ const StorybookRadiusVariables = createGlobalStyle<{ $radius: BuiltTheme['radius
     --admiral-radius-small: ${({ $radius }) => $radius.small};
     --admiral-radius-medium: ${({ $radius }) => $radius.medium};
     --admiral-radius-large: ${({ $radius }) => $radius.large};
+    --admiral-radius-round: ${({ $radius }) => $radius.round};
   }
 `;
 

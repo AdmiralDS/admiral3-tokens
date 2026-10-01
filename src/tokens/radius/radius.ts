@@ -19,11 +19,11 @@ const defineStringAliases = <T extends object>(target: T, aliases: FlatRadiusTok
   ) as T & Readonly<FlatRadiusTokens>;
 
 const radiusByBase = {
-  '0': { small: '0px', medium: '0px', large: '0px' },
-  '2': { small: '2px', medium: '2px', large: '4px' },
-  '4': { small: '4px', medium: '4px', large: '8px' },
-  '6': { small: '4px', medium: '6px', large: '12px' },
-  '8': { small: '4px', medium: '8px', large: '16px' },
+  '0': { small: '0px', medium: '0px', large: '0px', round: '1000px' },
+  '2': { small: '2px', medium: '2px', large: '4px', round: '1000px' },
+  '4': { small: '4px', medium: '4px', large: '8px', round: '1000px' },
+  '6': { small: '4px', medium: '6px', large: '12px', round: '1000px' },
+  '8': { small: '4px', medium: '8px', large: '16px', round: '1000px' },
 } as const;
 
 export type CornerRadiusBase = keyof typeof radiusByBase;

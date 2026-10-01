@@ -160,6 +160,16 @@ const StyledCssComponent = styled.div`
   ${typography['Body/Body 2 Long']}
 `;
 
+const StyledRoundComponent = styled(StyledThemeComponent)`
+  width: fit-content;
+  padding: 12px 24px;
+  border-radius: ${({ theme }) => theme.radius.round};
+`;
+
+const StyledCssRoundComponent = styled(StyledRoundComponent)`
+  border-radius: var(--admiral-radius-round);
+`;
+
 const StyledPreview = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -233,6 +243,15 @@ export const RadiusGroupsTemplate = () => {
               <RadiusGroupCard key={example.group} {...example} />
             ))}
           </StyledPreview>
+        </StyledSection>
+
+        <StyledSection>
+          <StyledSectionTitle>Round</StyledSectionTitle>
+          <StyledDescription>
+            Round задаёт скругление 1000px для круглых и капсульных форм. Значение одинаково для всех баз, включая 0.
+          </StyledDescription>
+          <StyledRoundComponent>theme.radius.round = {theme.radius.round}</StyledRoundComponent>
+          <StyledCssRoundComponent>var(--admiral-radius-round)</StyledCssRoundComponent>
         </StyledSection>
 
         <StyledSection>

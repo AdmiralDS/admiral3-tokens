@@ -253,6 +253,21 @@ const theme = buildTheme('light', { cornerRadius: '8' });
 // theme.radius.large === '16px'
 ```
 
+Для круглых и капсульных форм доступен `radius.round` / `theme.radius.round` со значением `1000px`.
+Round сохраняет это значение для всех баз, включая `0`.
+
+```tsx
+import { radius } from '@admiral-ds/admiral3-tokens';
+
+// radius.round === '1000px'
+```
+
+```css
+.pill {
+  border-radius: var(--admiral-radius-round);
+}
+```
+
 Доступные базы экспортируются как `cornerRadiusOptions`. Готовые темы используют базу `4`.
 В Storybook база переключается глобальным control `Corner radius`: он пересобирает тему и позволяет проверить
 компоненты, использующие `theme.radius.small`, `theme.radius.medium` или `theme.radius.large`.
