@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.1.0...v0.1.1) (2026-10-01)
+
+
+### Features
+
+* **radius:** export Round token ([6e459ff](https://github.com/AdmiralDS/admiral3-tokens/commit/6e459ff32e9d70e70b784d7c2334851b703bf860)), closes [#23](https://github.com/AdmiralDS/admiral3-tokens/issues/23)
+
 ## [0.1.0](https://github.com/AdmiralDS/admiral3-tokens/compare/v0.0.6...v0.1.0) (2026-09-01)
 
 
