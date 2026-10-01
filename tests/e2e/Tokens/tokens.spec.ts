@@ -156,6 +156,18 @@ test.describe('Token playground integration checks', () => {
     await expect(previewTracks.first()).toHaveCSS('height', '100px');
   });
 
+  test('applies Round through theme and CSS across corner radius selectors', async ({ page }) => {
+    await page.goto(getPlaygroundScenarioPath('radius/groups'));
+
+    await expect(page.getByText('theme.radius.round = 1000px', { exact: true })).toHaveCSS('border-radius', '1000px');
+    for (const base of ['0', '2', '4', '6', '8']) {
+      await page.getByText('var(--admiral-radius-round)', { exact: true }).evaluate((element, selectedBase) => {
+        element.setAttribute('data-admiral-corner-radius', selectedBase);
+      }, base);
+      await expect(page.getByText('var(--admiral-radius-round)', { exact: true })).toHaveCSS('border-radius', '1000px');
+    }
+  });
+
   test('mounts bundled font helpers in the playground runtime', async ({ page }) => {
     await page.goto(getPlaygroundScenarioPath('tokens/css'));
 

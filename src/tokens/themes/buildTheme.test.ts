@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { generateAdmiralPalette } from '../color';
-import { radius } from '../radius';
+import { cornerRadiusOptions, radius } from '../radius';
 import { buildTheme, buildThemes, darkTheme, lightTheme } from './index';
 
 describe('buildTheme', () => {
@@ -19,6 +19,18 @@ describe('buildTheme', () => {
     expect(theme.radius.medium).toBe('8px');
     expect(theme.radius.large).toBe('16px');
     expect(theme.radius.byBase).toBe(radius.byBase);
+  });
+
+  it('keeps Round available through the public API and every theme mode at every base', () => {
+    expect(radius.round).toBe('1000px');
+    for (const base of cornerRadiusOptions) {
+      expect(radius.byBase[base].round).toBe('1000px');
+      expect(radius[`By Base/${base}/Round`]).toBe('1000px');
+      for (const theme of Object.values(buildThemes({ cornerRadius: base }))) {
+        expect(theme.radius.round).toBe('1000px');
+        expect(theme.radius[`By Base/${base}/Round`]).toBe('1000px');
+      }
+    }
   });
 
   it('builds ready-to-use theme-dependent box-shadow strings', () => {

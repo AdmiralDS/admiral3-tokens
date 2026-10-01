@@ -299,11 +299,11 @@ Storybook использует `src/**/*.stories.tsx`, а playground испол�
 
 - `src/tokens/radius/index.ts` - public radius barrel. Экспортирует radius token map и типы.
 - `src/tokens/radius/radius.ts` - source of truth для radius tokens, строковых алиасов и сборки семантических групп
-  `small`/`medium`/`large` из выбранной corner-radius base.
+  `small`/`medium`/`large` из выбранной corner-radius base; `round` равен `1000px` для каждой базы.
 - `src/tokens/radius/stories/Radius.args.ts` - данные/args для Storybook radius.
 - `src/tokens/radius/stories/Radius.stories.tsx` - Storybook CSF файл для radius.
 - `src/tokens/radius/stories/Radius.template.tsx` - пример/template визуализации radius rules; подробно не разбирается.
-- `src/tokens/radius/stories/RadiusGroups.template.tsx` - инструкция и runtime-примеры для styled-components и чистого CSS: показывает выбор базы, значения small/medium/large и реакцию компонентов на глобальный Storybook corner-radius control.
+- `src/tokens/radius/stories/RadiusGroups.template.tsx` - инструкция и runtime-примеры для styled-components и чистого CSS: показывает выбор базы, значения small/medium/large и реакцию компонентов на глобальный Storybook corner-radius control; Round демонстрируется через theme и CSS в общем template для Storybook/playground.
 
 ## Tokens: shadow
 

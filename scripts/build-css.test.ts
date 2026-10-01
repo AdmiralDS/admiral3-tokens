@@ -69,6 +69,7 @@ describe('build-css helpers', () => {
       ['--admiral-radius-small', 'var(--admiral-radius-by-base-8-small, 4px)'],
       ['--admiral-radius-medium', 'var(--admiral-radius-by-base-8-medium, 8px)'],
       ['--admiral-radius-large', 'var(--admiral-radius-by-base-8-large, 16px)'],
+      ['--admiral-radius-round', 'var(--admiral-radius-by-base-8-round, 1000px)'],
     ]);
   });
 });
@@ -115,6 +116,13 @@ describe('build-css output', () => {
     expect(files['radius.css']).toContain('--admiral-radius-medium: var(--admiral-radius-by-base-4-medium, 4px);');
     expect(files['radius.css']).toContain('--admiral-radius-large: var(--admiral-radius-by-base-4-large, 8px);');
     expect(files['radius.css']).toContain('--admiral-radius-by-base-8-large: 16px;');
+    for (const base of ['0', '2', '4', '6', '8']) {
+      expect(files['radius.css']).toContain(`--admiral-radius-by-base-${base}-round: 1000px;`);
+      expect(files['radius.css']).toContain(
+        `--admiral-radius-round: var(--admiral-radius-by-base-${base}-round, 1000px);`,
+      );
+    }
+    expect(files['index.css']).toContain('--admiral-radius-round: var(--admiral-radius-by-base-4-round, 1000px);');
     expect(files['radius.css']).toContain('[data-admiral-corner-radius="0"]');
     expect(files['radius.css']).toContain('[data-admiral-corner-radius="8"]');
     expect(files['index.css']).toContain('[data-admiral-corner-radius="8"]');
