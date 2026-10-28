@@ -24,6 +24,8 @@ jobs:
   test-e2e:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
@@ -37,9 +39,9 @@ jobs:
         run: npm run lint
       - name: Check types
         run: npm run typecheck
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
       - name: Run Playwright tests
+        env:
+          HOME: /root
         run: npm run test:e2e
       - uses: actions/upload-artifact@v7
         if: ${{ failure() }}
